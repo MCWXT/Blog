@@ -22,7 +22,7 @@
     </div>
     <div class="offcanvas-body p-2 px-4">
       <div class="list-tao-group mt-4" data-bs-dismiss="offcanvas" aria-label="Close">
-        <router-link class="list-tao-item ps-3 py-1 my-1 link-secondary" :to="item.to" :class="{ 'bg-body-tertiary': $route.path == item.location }" v-for="item in nav">
+        <router-link class="list-tao-item ps-3 py-1 my-1 link-secondary" :to="item.to" v-for="item in nav">
           <span>{{item.name}}</span>
         </router-link>
       </div>
