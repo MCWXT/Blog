@@ -1,0 +1,44 @@
+<nav class="navbar bg-base-100 border-b">
+  <div class="flex-1">
+    <label class="btn btn-square btn-ghost" for="my-drawer" aria-label="open sidebar">
+      <i class="bi bi-list text-2xl"></i>
+    </label>
+    <h1 class="btn btn-ghost text-xl">MCWXT的个人博客</h1>
+  </div>
+  <div class="flex-none gap-2">
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img src="/assets/img/logo.png" alt="">
+        </div>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li><router-link to="/login">登录</router-link></li>
+        <li><router-link to="/login?event=logout">注销</router-link></li>
+        <li><button @click="() => cache.clear()">清除缓存</button></li>
+        <li>
+          <details>
+            <summary>主题</summary>
+            <ul tabindex="0">
+              <li>
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="默认" value="default" />
+              </li>
+              <li>
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="复古" value="retro" />
+              </li>
+              <li>
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="赛博朋克" value="cyberpunk" />
+              </li>
+              <li>
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="可爱" value="valentine" />
+              </li>
+              <li>
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="水" value="aqua" />
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -9,16 +9,23 @@ export default [
     name: '讨论',
     to: '/discussions'
   }, {
-    name: 'MC下载',
-    to: '/mc/download'
-  }, {
-    name: 'MC盘',
-    to: {
-      path: '/link/to',
-      query: {
-        url: '//pan.mcwxt.top'
+    name: 'MC',
+    to: '/mc',
+    children: [
+      {
+        name: '下载',
+        to: '/mc/download'
+      },
+      {
+        name: '云盘',
+        to: {
+          path: '/link/to',
+          query: {
+            url: '//pan.mcwxt.top'
+          }
+        }
       }
-    }
+    ]
   }, {
     name: 'Cloud盘',
     to: {

@@ -1,24 +1,24 @@
 <div>
-  <div class="position-relative" style="height: 16rem;background: url('/assets/img/huTao.jpg') no-repeat center;background-size: cover;" class="w-100 border rounded">
-    <h1 style="font-size: 4rem;" class="position-absolute top-50 translate-middle-y mx-1 text-light fw-bold">Discussions</h1>
+  <div class="relative border rounded h-64" style="background: url('/assets/img/huTao.jpg') no-repeat center;background-size: cover;">
+    <h1 class="text-6xl" class="absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold">Discussions</h1>
   </div>
   <div>
     <div>
-      <div class="m-2 mx-4 position-relative">
-        <span class="fs-2">{{discussions.length}}</span>
-        <a class="btn btn-success btn-sm position-absolute end-0 top-50 translate-middle" role="button" href="//github.com/MCWXT/mcwxt.github.io/discussions/new/choose">新讨论</a>
+      <div class="m-2 mx-4 relative">
+        <span class="text-xl">{{discussions.length}}</span>
+        <a class="btn btn-success btn-sm absolute end-0" role="button" href="//github.com/MCWXT/mcwxt.github.io/discussions/new/choose">新讨论</a>
       </div>
     </div>
-    <div v-if="discussions" class="m-3">
-      <div class="list-tao-group rounded-2 overflow-hidden">
-        <router-link class="list-tao-item border-top rounded-0" v-for="discussion in discussions" :to="'/discussions/' + discussion.number">
-          <div class="p-2">
+    <template v-if="discussions">
+      <div class="m-3 rounded-lg divide-y">
+        <router-link class="border-t block" v-for="discussion in discussions" :to="'/discussions/' + discussion.number">
+          <div class="p-2 transition active:bg-gray-100">
             <div class="mb-2">
-              <h2>{{discussion.title}}</h2>
+              <h2 class="text-2xl">{{discussion.title}}</h2>
             </div>
-            <div class="d-flex align-items-center">
+            <div class="flex items-center">
               <div class="me-5">
-                <img class="rounded-circle me-1" style="width: 2rem;" :src="discussion.user.avatar_url" alt="">
+                <img class="rounded-full inline me-1 w-10" :src="discussion.user.avatar_url" alt="">
                 <span>{{discussion.user.login}}</span>
               </div>
               <div>
@@ -29,6 +29,6 @@
           </div>
         </router-link>
       </div>
-    </div>
+    </template>
   </div>
 </div>

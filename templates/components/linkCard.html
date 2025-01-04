@@ -1,7 +1,7 @@
-<router-link :to="{ path: '/link', query: { url: href } }" style="width: 22rem;height: 4rem;">
+<router-link class="rounded flex w-96 h-16 transition active:scale-95" :to="{ path: '/link', query: { url: href } }">
   <div class="w-25">
     <i class="rounded-circle m-2 bi" :class="icon" style="height: 3rem;width: 3rem;font-size: 2.8rem;" v-if="type == 'i'"></i>
-    <img class="rounded-circle m-2" loading="lazy" style="height: 3rem;width: 3rem;object-fit: contain;" :src="icon" v-else />
+    <img class="rounded-full m-2" loading="lazy" style="height: 3rem;width: 3rem;object-fit: contain;" :src="icon" v-else />
   </div>
   <div class="lh-1 my-auto">
     <h3 class="fs-5 m-0">{{title}}</h3>

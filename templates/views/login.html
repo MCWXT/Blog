@@ -1,15 +1,15 @@
 <div>
-  <div class="mx-3 p-2 rounded-4 text-bg-light" style="margin-top: 4rem; margin-bottom: 8rem">
+  <div class="mx-3 my-16">
     <div>
-      <i class="bi bi-github text-center d-block" style="font-size: 5rem;"></i>
+      <i class="bi bi-github text-center block text-8xl"></i>
     </div>
-    <div>
+    <div class="text-2xl my-4">
       <h2 class="text-center">使用github登录</h2>
-      <h1 class="fs-2 text-center">MCWXT的个人博客</h1>
+      <h1 class="text-center">MCWXT的个人博客</h1>
     </div>
     <div class="pb-2">
       <div class="text-center">
-        <a class="btn btn-success w-75" :class="{ disabled: logged }" role="button" href="https://github.com/login/oauth/authorize?client_id=Iv23lieAt4NOqGN5GqZI&state=MCWXT">
+        <a class="btn btn-wide btn-primary text-lg" :class="{ 'btn-disabled': logged }" role="button" href="https://github.com/login/oauth/authorize?client_id=Iv23lieAt4NOqGN5GqZI&state=MCWXT">
           <span v-if="logged">您已登录</span>
           <span v-else>点击授权</span>
         </a>
@@ -18,7 +18,7 @@
   </div>
   <div class="mx-3 my-2">
     <div class="text-center">
-      <span class="text-body-tertiary">本博客承诺不会使用您的个人信息</span>
+      <span class="text-tertiary">本博客承诺不会使用您的个人信息</span>
     </div>
   </div>
 </div>

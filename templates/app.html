@@ -1,30 +1,36 @@
-<header>
-  <div class="navHeight">
-    <my-nav class="navbar fixed-top w-100 border-bottom bg-white p-1 z-2 navHeight"></my-nav>
-  </div>
-</header>
-<main class="bg-white">
-  <router-view :class="$route.name"></router-view>
-</main>
-<footer>
-  <div class="p-3">
-    <div>
-      <span class="fw-bold fs-4">MCWXT</span>
-    </div>
-    <div>
-      <span>感谢访问我的博客！</span>
-    </div>
-    <div class="fs-7 mt-2">
-      <div>
+<div class="drawer">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <header class="h-16">
+      <nav-bar class="fixed top-0 z-50"></nav-bar>
+    </header>
+    <main>
+      <router-view v-slot="{ Component }">
+        <keep-alive :exclude="include">
+          <component :class="$route.name" :is="Component"></component>
+        </keep-alive>
+      </router-view>
+    </main>
+    <footer class="footer bg-neutral text-neutral-content p-10">
+      <aside>
+        <span class="text-2xl font-bold">MCWXT</span>
+        <p>感谢访问我的博客！</p><br>
+        <p>Copyright © {{new Date().getFullYear()}} - All right reserved by ACME Industries Ltd</p>
+      </aside>
+      <nav>
+        <h6 class="footer-title">感谢</h6>
         <ul>
-          <li><a href="https://www.w3.org/zh-hans/">w3c</a></li>
-          <li><a href="https://www.mozilla.org/privacy/websites/#cookies">cookie</a></li>
-          <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage">localStorage</a></li>
+          <li><a href="https://www.w3.org/zh-hans/">W3C</a></li>
+          <li><a href="https://www.mozilla.org/privacy/websites/#cookies">Cookie</a></li>
+          <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage">LocalStorage</a></li>
         </ul>
-      </div>
-      <i class="bi bi-c-circle"></i>
-      <span>2024.5 -</span>
-      <span>本网站产权归bilibili MCWXT所有</span>
-    </div>
+      </nav>
+      <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+        <a class="text-2xl" target="_blank" v-for="item in myselfLink" :title="item.content" :href="item.location">
+          <i class="bi" :class="item.icon"></i>
+        </a>
+      </nav>
+    </footer>
   </div>
-</footer>
+  <drawer-side></drawer-side>
+</div>

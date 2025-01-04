@@ -1,0 +1,9 @@
+<li>
+  <details v-if="parent.children" open>
+    <summary><router-link to="parent.to" exact-active-class="active">{{parent.name}}</router-link></summary>
+    <ul>
+      <sub-menus :parent="item" v-for="item in parent.children"></sub-menus>
+    </ul>
+  </details>
+  <router-link :to="parent.to" exact-active-class="active" v-else>{{parent.name}}</router-link>
+</li>
