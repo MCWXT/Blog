@@ -1,18 +1,31 @@
 export default [
   {
     name: '主页',
-    location: '/'
-  }, /*{
-    name: '视频',
-    location: '/bilibili'
-  },*/ {
+    to: '/'
+  }, {
+    name: 'B站',
+    to: '/bilibili'
+  }, {
     name: '讨论',
-    location: '/discussions'
+    to: '/discussions'
   }, {
     name: 'MC下载',
-    location: '/mc/download'
+    to: '/mc/download'
   }, {
     name: 'MC盘',
-    location: '/pan'
+    to: {
+      path: '/link/to',
+      query: {
+        url: '//pan.mcwxt.top'
+      }
+    }
+  }, {
+    name: 'Cloud盘',
+    to: {
+      path: '/link/to',
+      query: {
+        url: '//cloud.mcwxt.top'
+      }
+    }
   }
 ]

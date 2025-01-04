@@ -27,6 +27,13 @@ export default [
       title: '跳转链接'
     }
   }, {
+    path: '/link/to',
+    name: 'LinkTo',
+    component: () => import('/views/link.js'),
+    meta: {
+      title: '跳转至…'
+    }
+  }, {
     path: '/bilibili',
     name: 'BiliBili',
     component: () => import('/views/bilibili.js'),
@@ -46,13 +53,6 @@ export default [
     component: () => import('/views/discussion/discussion.js'),
     meta: {
       title: '讨论'
-    }
-  }, {
-    path: '/pan',
-    name: 'Pan',
-    component: () => { window.location.href = '//pan.mcwxt.top'; },
-    meta: {
-      title: '网盘'
     }
   }, {
     path: '/mc/download',
