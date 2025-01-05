@@ -10,9 +10,9 @@
       </div>
     </div>
     <template v-if="discussions">
-      <div class="m-3 rounded-lg divide-y">
-        <router-link class="border-t block" v-for="discussion in discussions" :to="'/discussions/' + discussion.number">
-          <div class="p-2 transition active:bg-gray-100">
+      <div class="m-3 divide-y">
+        <router-link class="block transition active:backdrop-brightness-90" v-for="discussion in discussions" :to="'/discussions/' + discussion.number">
+          <div class="p-2">
             <div class="mb-2">
               <h2 class="text-2xl">{{discussion.title}}</h2>
             </div>

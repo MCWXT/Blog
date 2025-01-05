@@ -12,7 +12,7 @@
           <img src="/assets/img/logo.png" alt="">
         </div>
       </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+      <ul tabindex="0" class="menu menu-sm dropdown-content block overflow-y-auto max-h-96 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li><router-link to="/login">登录</router-link></li>
         <li><router-link to="/login?event=logout">注销</router-link></li>
         <li><button @click="() => cache.clear()">清除缓存</button></li>
@@ -20,20 +20,8 @@
           <details>
             <summary>主题</summary>
             <ul tabindex="0">
-              <li>
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="默认" value="default" />
-              </li>
-              <li>
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="复古" value="retro" />
-              </li>
-              <li>
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="赛博朋克" value="cyberpunk" />
-              </li>
-              <li>
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="可爱" value="valentine" />
-              </li>
-              <li>
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="水" value="aqua" />
+              <li v-for="theme in themes">
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" :aria-label="theme" :value="theme" />
               </li>
             </ul>
           </details>
