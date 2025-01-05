@@ -4,7 +4,7 @@
     <div class="w-89 my-3 mx-auto"><img src="/assets/img/remcbbsBT.png" alt=""></div>
     <div class="alert w-72 my-2 mx-auto">
       <span>
-        <i class="bi bi-exclamation-circle stroke-info text-xxl shrink-0"></i><br>
+        <i class="bi bi-exclamation-circle text-xl text-info"></i><br>
         <b>仅供体验，请支持正版</b><br>
         正版购买：<a href="https://www.minecraft.net/zh-hans/store/minecraft-android" class="link-success text-decoration-none">官方页面<i class="bi bi-link-45deg"></i></a>
       </span>
@@ -13,7 +13,7 @@
   <div>
     <div class="m-2">
       <table class="table table-xs">
-        <thead class="border-bottom">
+        <thead>
           <tr>
             <th>版本</th>
             <th>类型</th>
@@ -23,9 +23,9 @@
         </thead>
         <template v-if="data">
           <tbody>
-            <tr class="border-t" v-for="apk in data">
+            <tr v-for="apk in data">
               <td>{{apk.version}}</td>
-              <td class="text-sm">
+              <td>
                 <span class="badge badge-error badge-outline text-nowrap" v-if="apk.beta == 'True'">测试版</span>
                 <span v-else class="badge badge-success badge-outline text-nowrap">正式版</span>
               </td>
