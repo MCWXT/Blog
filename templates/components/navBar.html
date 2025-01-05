@@ -15,13 +15,12 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content block overflow-y-auto max-h-96 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li><router-link to="/login">登录</router-link></li>
         <li><router-link to="/login?event=logout">注销</router-link></li>
-        <li><button @click="() => cache.clear()">清除缓存</button></li>
         <li>
           <details>
             <summary>主题</summary>
             <ul tabindex="0">
               <li v-for="theme in themes">
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" :aria-label="theme" :value="theme" />
+                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" v-model="currentTheme" :aria-label="theme" :value="theme" />
               </li>
             </ul>
           </details>
