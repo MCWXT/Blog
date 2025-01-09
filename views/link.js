@@ -4,10 +4,11 @@ import { getTemplate } from 'tao';
 export default {
   setup() {
     const route = useRoute();
-    route.path == '/link/to' && (location.href = route.query.url);
+    (route.path.indexOf('/link/to') != -1) && (location.href = route.query.url);
     return {
       
     }
   },
+  name: 'Link',
   template: await getTemplate('/templates/views/link.html')
 }

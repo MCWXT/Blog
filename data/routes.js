@@ -27,7 +27,7 @@ export default [
       title: '跳转链接'
     }
   }, {
-    path: '/link/to',
+    path: '/link/to/:name',
     name: 'LinkTo',
     component: () => import('/views/link.js'),
     meta: {

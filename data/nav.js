@@ -19,7 +19,7 @@ export default [
       {
         name: '云盘',
         to: {
-          path: '/link/to',
+          path: '/link/to/pan',
           query: {
             url: '//pan.mcwxt.top'
           }
@@ -29,7 +29,7 @@ export default [
   }, {
     name: 'Cloud盘',
     to: {
-      path: '/link/to',
+      path: '/link/to/cloud',
       query: {
         url: '//cloud.mcwxt.top'
       }

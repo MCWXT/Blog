@@ -5,7 +5,7 @@ import DrawerSide from '/components/drawerSide.js';
 import myselfLink from '/data/myselfLink.js';
 export default {
   setup() {
-    const include = ['Discussion'];
+    const include = ['Discussion', 'Link'];
     return {
       myselfLink,
       include
