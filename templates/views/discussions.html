@@ -17,12 +17,12 @@
               <h2 class="text-2xl">{{discussion.title}}</h2>
             </div>
             <div class="flex items-center">
-              <div class="me-5">
-                <img class="rounded-full inline me-1 w-10" :src="discussion.user.avatar_url" alt="">
+              <div class="">
+                <img class="rounded-full inline mr-1 w-10" :src="discussion.user.avatar_url" alt="">
                 <span>{{discussion.user.login}}</span>
               </div>
               <div>
-                <i class="bi bi-chat-left-dots me-1"></i>
+                <i class="bi bi-chat-left-dots mr-1"></i>
                 <span>{{discussion.comments}}</span>
               </div>
             </div>
