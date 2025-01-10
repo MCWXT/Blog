@@ -15,16 +15,11 @@ export default [
     icon: '//tigercrl.top/assets/img/Tigercrl.jpg',
     brief: '会写前端！'
   }, {
-    title: 'KBlog',
-    url: '//ilukane.top/',
-    icon: '//ilukane.top/assets/img/tx.png',
-    brief: '静态之王'
-  },/* {
     title: '辽阔域名',
     url: '//lkdns.org/',
     icon: '//lkdns.org/q.jpg',
     brief: '公益发放域名'
-  }, */{
+  }, {
     title: '蜜蜂云',
     url: '//cloud.beecld.com',
     icon: '//cloud.beecld.com/beecld.png',
