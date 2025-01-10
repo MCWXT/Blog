@@ -3,11 +3,8 @@
 @import url("/style/app.css");
 * {
   font-family: sans-serif !important;
-  background-repeat: no-repeat;
-  background-position: top;
 }
 
 img {
   max-width: 100%;
-  object-fit: cover;
 }

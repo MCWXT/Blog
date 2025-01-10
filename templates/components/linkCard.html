@@ -1,10 +1,12 @@
 <router-link class="rounded flex w-96 h-16 transition active:scale-95" :to="{ path: '/link', query: { url: href } }">
-  <div class="w-25">
-    <i class="rounded-circle m-2 bi" :class="icon" style="height: 3rem;width: 3rem;font-size: 2.8rem;" v-if="type == 'i'"></i>
-    <img class="rounded-full m-2" loading="lazy" style="height: 3rem;width: 3rem;object-fit: contain;" :src="icon" v-else />
+  <div class="m-2">
+    <div class="rounded-full overflow-hidden size-12">
+      <i class="text-4xl size-full bi" :class="icon" v-if="type == 'i'"></i>
+      <img class="object-contain size-full" loading="lazy" :src="icon" v-else />
+    </div>
   </div>
-  <div class="lh-1 my-auto">
-    <h3 class="fs-5 m-0">{{title}}</h3>
-    <span class="text-black-50" style="font-size: .7rem">{{content}}</span>
+  <div class="my-auto w-64 truncate">
+    <h3 class="">{{title}}</h3>
+    <span class="text-xs">{{content}}</span>
   </div>
 </router-link>

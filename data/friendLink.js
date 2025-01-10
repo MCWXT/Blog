@@ -3,7 +3,7 @@ export default [
     title: 'REmcbbs',
     url: '//remcbbs.com/',
     icon: '//remcbbs.com/data/attachment/common/template/boardimg_20240325p0e983p4.png',
-    brief: '新一届MC论坛'
+    brief: '新一届MC论坛护肤品你的事嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻，就说的吗啡'
   }, {
     title: '朝阳云',
     url: '//zhaoyangyun.com/',
