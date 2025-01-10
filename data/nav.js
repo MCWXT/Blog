@@ -34,5 +34,13 @@ export default [
         url: '//cloud.mcwxt.top'
       }
     }
+  }, {
+    name: 'Gemini',
+    to: {
+      path: '/link/to/gemini',
+      query: {
+        url: '//gemini.mcwxt.top'
+      }
+    }
   }
 ]
