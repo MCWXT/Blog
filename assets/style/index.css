@@ -1,6 +1,6 @@
 @import url("/cdn_modules/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url("/cdn_modules/daisyui@4.12.23/full.css");
-@import url("/style/app.css");
+@import url("/assets/style/app.css");
 * {
   font-family: sans-serif !important;
 }

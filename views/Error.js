@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { getTemplate } from 'tao';
-import httpErrors from '/data/httpErrors.js';
+import httpErrors from '/assets/data/httpErrors.js';
 export default {
   setup() {
     const route = useRoute();
