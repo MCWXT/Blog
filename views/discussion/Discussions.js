@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { getTemplate, cache } from 'tao';
-import { octokit, config } from '/script/api/github.js';
+import { octokit, config } from '/modules/server/github.js';
 export default {
   setup() {
     const discussions = ref([]);
@@ -9,5 +9,6 @@ export default {
       discussions
     }
   },
-  template: await getTemplate('/templates/views/discussions.html')
+  name: 'Discussions',
+  template: await getTemplate('/views/discussion/Discussions')
 }

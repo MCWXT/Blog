@@ -1,8 +1,9 @@
+import Home from '/views/home.js';
 export default [
   {
     path: '/',
     name: 'Home',
-    component: () => import('/views/home.js'),
+    component: Home,
     meta: {
       title: '首页'
     }
@@ -32,13 +33,6 @@ export default [
     component: () => import('/views/link.js'),
     meta: {
       title: '跳转至…'
-    }
-  }, {
-    path: '/bilibili',
-    name: 'BiliBili',
-    component: () => import('/views/bilibili.js'),
-    meta: {
-      title: '我的B站'
     }
   }, {
     path: '/discussions',

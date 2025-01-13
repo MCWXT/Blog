@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import { getTemplate, cache } from 'tao';
-import themes from '/data/themes.js';
+import themes from '/assets/data/themes.js';
 export default {
   setup() {
     const currentTheme = ref(cache.getItem('currentTheme') || 'light');
@@ -10,5 +10,6 @@ export default {
       currentTheme
     }
   },
-  template: await getTemplate('/templates/components/navBar.html')
+  name: 'NavBar',
+  template: await getTemplate('/components/NavBar')
 }

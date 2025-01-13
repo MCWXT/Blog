@@ -13,5 +13,6 @@ export default {
       logged: true
     }
   },
-  template: await getTemplate('/templates/views/login.html')
+  name: 'Oauth',
+  template: await getTemplate('/views/login/Login')
 }

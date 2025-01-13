@@ -1,7 +1,8 @@
 import { Axios } from 'axios';
 const axios = new Axios({});
 export const getTemplate = async (src) => {
-  return axios.get(src).then((response) => response.data);;
+  const url = src + '.html';
+  return axios.get(url).then((response) => response.data);
 }
 export const httproxy = (url) => {
   const proxyServer = 'https://proxy.mcwxt.top/';

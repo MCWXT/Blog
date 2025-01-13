@@ -26,8 +26,8 @@
             <tr v-for="apk in data">
               <td>{{apk.version}}</td>
               <td>
-                <span class="badge badge-error badge-outline text-nowrap" v-if="apk.beta == 'True'">测试版</span>
-                <span v-else class="badge badge-success badge-outline text-nowrap">正式版</span>
+                <span class="text-error" v-if="apk.beta == 'True'">测试版</span>
+                <span v-else class="text-success">正式版</span>
               </td>
               <td>{{apk.size}}</td>
               <td><a class="btn btn-primary" @click="download(apk.version, apk.info_key)"><i class="bi bi-download"></i></a></td>

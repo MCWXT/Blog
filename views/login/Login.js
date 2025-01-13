@@ -11,5 +11,6 @@ export default {
       logged: Boolean(cache.getItem('access_token'))
     }
   },
-  template: await getTemplate('/templates/views/login.html')
+  name: 'Login',
+  template: await getTemplate('/views/login/Login')
 }

@@ -4,7 +4,12 @@ export default [
     to: '/'
   }, {
     name: 'B站',
-    to: '/bilibili'
+    to: {
+      path: '/link/to/bilibili',
+      query: {
+        url: 'https://space.bilibili.com/3493283118451294'
+      }
+    }
   }, {
     name: '讨论',
     to: '/discussions'

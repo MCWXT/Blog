@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 import { getTemplate } from 'tao';
 import { Axios } from 'axios';
-import friendLink from '/data/friendLink.js';
-import LinkCard from '/components/linkCard.js';
+import friendLink from '/assets/data/friendLink.js';
+import LinkCard from '/components/LinkCard.js';
 export default {
   setup() {
     const axios = new Axios({});
@@ -16,5 +16,6 @@ export default {
   components: {
     LinkCard
   },
-  template: await getTemplate('/templates/views/home.html')
+  name: 'Home',
+  template: await getTemplate('/views/Home')
 }

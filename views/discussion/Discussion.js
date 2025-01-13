@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { getTemplate, cache } from 'tao';
 import { useRoute } from 'vue-router';
 import { marked } from '/cdn_modules/marked@9.1.6/lib/marked.esm.min.js';
-import { octokit, config} from '/script/api/github.js';
+import { octokit, config} from '/modules/server/github.js';
 export default {
   setup() {
     const route = useRoute();
@@ -19,5 +19,5 @@ export default {
     }
   },
   name: 'Discussion',
-  template: await getTemplate('/templates/views/discussion.html')
+  template: await getTemplate('/views/discussion/Discussion')
 }

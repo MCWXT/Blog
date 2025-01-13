@@ -12,5 +12,6 @@ export default {
       errorMessage
     }
   },
-  template: await getTemplate('/templates/views/error.html')
+  name: 'Error',
+  template: await getTemplate('/views/Error')
 }

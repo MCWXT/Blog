@@ -10,5 +10,5 @@ export default {
     }
   },
   name: 'Link',
-  template: await getTemplate('/templates/views/link.html')
+  template: await getTemplate('/views/Link')
 }

@@ -27,5 +27,6 @@ export default {
       refresh
     }
   },
-  template: await getTemplate('/templates/views/mcDownload.html')
+  name: 'McDownload',
+  template: await getTemplate('/views/mc/Download')
 }

@@ -6,12 +6,12 @@
     </header>
     <main>
       <router-view v-slot="{ Component }">
-        <keep-alive :exclude="include">
+        <keep-alive :include="include">
           <component :class="$route.name" :is="Component"></component>
         </keep-alive>
       </router-view>
     </main>
-    <footer class="footer bg-neutral text-neutral-content p-10">
+    <footer class="footer bg-base-200 text-base-content p-10">
       <aside>
         <span class="text-2xl font-bold">MCWXT</span>
         <p>感谢访问我的博客！</p><br>

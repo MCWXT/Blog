@@ -8,5 +8,6 @@ export default {
       
     }
   },
-  template: await getTemplate('/templates/components/linkCard.html')
+  name: 'LinkCard',
+  template: await getTemplate('/components/LinkCard')
 }

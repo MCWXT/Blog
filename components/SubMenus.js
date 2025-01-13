@@ -1,7 +1,6 @@
 import { ref } from 'vue';
 import { getTemplate } from 'tao';
 export default {
-  name: 'SubMenus',
   props: ['parent'],
   setup() {
 
@@ -9,5 +8,6 @@ export default {
 
     }
   },
-  template: await getTemplate('/templates/components/subMenus.html')
+  name: 'SubMenus',
+  template: await getTemplate('/components/SubMenus')
 }

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { getTemplate, cache } from 'tao';
-import SubMenus from '/components/subMenus.js';
-import nav from '/data/nav.js';
+import SubMenus from '/components/SubMenus.js';
+import nav from '/assets/data/nav.js';
 export default {
   setup() {
 
@@ -13,5 +13,6 @@ export default {
   components: {
     SubMenus
   },
-  template: await getTemplate('/templates/components/drawerSide.html')
+  name: 'DrawerSide',
+  template: await getTemplate('/components/DrawerSide')
 }
