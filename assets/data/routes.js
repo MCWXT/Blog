@@ -70,5 +70,17 @@ export default [
     meta: {
       title: '授权'
     }
-  },
+  }, {
+    path: '/bilibili',
+    children: [
+      {
+        path: '',
+        name: 'BiliBiliPopular',
+        component: () => import('/views/bilibili/Popular.js'),
+        meta: {
+          title: 'B站热门'
+        }
+      }
+    ]
+  }, 
 ]

@@ -4,7 +4,8 @@ import { axios } from '/modules/server/bilibili.js';
 export default {
   setup() {
     const videos = ref({});
-    axios.get('/popular').then(response => videos.value = response.data);
+    axios.post('/popular').then(response => videos.value = response.data);
+    console.log(videos)
     return {
       
     }
