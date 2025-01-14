@@ -6,7 +6,7 @@ export default {
   setup() {
     const route = useRoute();
     const axios = new Axios({});
-    axios.post('/api/login/access_token/' + route.query.code).then((response) => {
+    axios.post('https://mcwxt.top/api/login/access_token/' + route.query.code).then((response) => {
       cache.setItem('access_token', JSON.parse(response.data).access_token);
     }).catch((error) => alert(error));
     return {
