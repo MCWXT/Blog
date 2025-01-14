@@ -1,4 +1,4 @@
 export async function onRequestGet(context) {
-  const response = fetch('https://api.bilibili.com/x/web-interface/archive/related?bvid=' + context.params.bvid).then(response => response.text());
+  const response = fetch('https://api.bilibili.com/x/web-interface/archive/related?bvid=' + context.params.bvid);
   return new Response(response.body);
 }
