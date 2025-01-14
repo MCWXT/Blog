@@ -1,14 +1,14 @@
 import { Axios } from 'axios';
 const axios = new Axios({});
-export const getTemplate = async (src) => {
+const getTemplate = async (src) => {
   const url = src + '.html';
   return axios.get(url).then((response) => response.data);
 }
-export const httproxy = (url) => {
+const httproxy = (url) => {
   const proxyServer = 'https://proxy.mcwxt.top/';
   return proxyServer + url;
 };
-export const cache = {
+const cache = {
   setItem(key, content) {
     localStorage.setItem(key, typeof content == 'string' ? content : JSON.stringify(content));
     return content;
@@ -24,3 +24,4 @@ export const cache = {
     localStorage.clear();
   }
 }
+export { axios, getTemplate, httproxy, cache }
