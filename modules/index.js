@@ -4,6 +4,9 @@ const getTemplate = async (src) => {
   const url = src + '.html';
   return axios.get(url).then((response) => response.data);
 }
+const importComponent = (src) => {
+  return () => import(src + '.js');
+}
 const httproxy = (url) => {
   const proxyServer = 'https://proxy.mcwxt.top/';
   return proxyServer + url;
@@ -24,4 +27,4 @@ const cache = {
     localStorage.clear();
   }
 }
-export { axios, getTemplate, httproxy, cache }
+export { axios, getTemplate, importComponent, httproxy, cache }

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { getTemplate, cache } from 'tao';
 import SubMenus from '/components/SubMenus.js';
-import nav from '/assets/data/nav.js';
+import nav from '/assets/data/Nav.js';
 export default {
   setup() {
 

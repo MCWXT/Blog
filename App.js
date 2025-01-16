@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { getTemplate } from 'tao';
 import NavBar from '/components/NavBar.js';
 import DrawerSide from '/components/DrawerSide.js';
-import myselfLink from '/assets/data/myselfLink.js';
+import link from '/assets/data/Link.js';
 export default {
   setup() {
     const include = [
@@ -11,7 +11,7 @@ export default {
       'McDownload',
     ]
     return {
-      myselfLink,
+      link,
       include
     }
   },

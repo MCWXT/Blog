@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import { getTemplate, cache } from 'tao';
-import themes from '/assets/data/themes.js';
+import themes from '/assets/data/Themes.js';
 export default {
   setup() {
     const currentTheme = ref(cache.getItem('currentTheme') || 'light');

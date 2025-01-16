@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { getTemplate, cache } from 'tao';
 import { useRoute } from 'vue-router';
-import { marked } from '/cdn_modules/marked@9.1.6/lib/marked.esm.min.js';
+import { marked } from '/cdn_modules/marked@15.0.5/lib/marked.esm.min.js';
 import { octokit, config} from '/modules/server/github.js';
 export default {
   setup() {
