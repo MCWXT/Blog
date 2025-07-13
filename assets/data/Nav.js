@@ -5,7 +5,7 @@ export default [
   }, {
     name: 'B站',
     to: {
-      path: '/link/to/bilibili',
+      path: '/linkto/bilibili',
       query: {
         url: 'https://space.bilibili.com/3493283118451294'
       }
@@ -24,7 +24,7 @@ export default [
       {
         name: '云盘',
         to: {
-          path: '/link/to/pan',
+          path: '/linkto/pan',
           query: {
             url: '//pan.mcwxt.top'
           }
@@ -34,7 +34,7 @@ export default [
   }, {
     name: 'Cloud盘',
     to: {
-      path: '/link/to/cloud',
+      path: '/linkto/cloud',
       query: {
         url: '//cloud.mcwxt.top'
       }
@@ -42,7 +42,7 @@ export default [
   }, {
     name: 'Gemini',
     to: {
-      path: '/link/to/gemini',
+      path: '/linkto/gemini',
       query: {
         url: '//gemini.mcwxt.top'
       }

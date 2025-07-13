@@ -31,7 +31,7 @@ const routes = [
       title: '跳转链接'
     }
   }, {
-    path: '/link/to/:name',
+    path: '/linkto/:name',
     name: 'LinkTo',
     component: importComponent('/views/Link'),
     meta: {
