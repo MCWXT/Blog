@@ -47,7 +47,7 @@ const routes = [
   }, {
     path: '/discussions/:number',
     name: 'Discussion',
-    component: importComponent('/views/Discussion/discussion'),
+    component: importComponent('/views/discussion/Discussion'),
     meta: {
       title: '讨论'
     }

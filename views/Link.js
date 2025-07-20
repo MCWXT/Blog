@@ -5,6 +5,7 @@ export default {
   setup() {
     const route = useRoute();
     if (route.path.indexOf('linkto') != -1) {
+      history.back();
       location.href = route.query.url;
     }
     return {
