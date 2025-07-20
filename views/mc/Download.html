@@ -2,7 +2,7 @@
   <div class="m-2">
     <h1 class="text-2xl text-center">MC基岩版全版本下载</h1>
     <div class="w-89 my-3 mx-auto"><img src="/assets/img/remcbbsBT.png" alt=""></div>
-    <div class="alert w-72 my-2 mx-auto">
+    <div class="alert alert-vertical w-72 my-2 mx-auto">
       <span>
         <i class="bi bi-exclamation-circle text-xl text-info"></i><br>
         <b>仅供体验，请支持正版</b><br>
@@ -15,22 +15,22 @@
       <table class="table table-xs">
         <thead>
           <tr>
-            <th>版本</th>
-            <th>类型</th>
-            <th>大小</th>
-            <th>下载</th>
+            <th class="text-center">版本</th>
+            <th class="text-center">类型</th>
+            <th class="text-center">大小</th>
+            <th class="text-center">下载</th>
           </tr>
         </thead>
         <template v-if="data">
           <tbody>
             <tr v-for="apk in data">
-              <td>{{apk.version}}</td>
-              <td>
+              <td class="text-center">{{apk.version}}</td>
+              <td class="text-center">
                 <span class="text-error" v-if="apk.beta == 'True'">测试版</span>
                 <span v-else class="text-success">正式版</span>
               </td>
-              <td>{{apk.size}}</td>
-              <td><a class="btn btn-primary" @click="download(apk.version, apk.info_key)"><i class="bi bi-download"></i></a></td>
+              <td class="text-center">{{apk.size}}</td>
+              <td class="text-center"><a class="btn btn-primary" @click="download(apk.version, apk.info_key)"><i class="bi bi-download"></i></a></td>
             </tr>
           </tbody>
         </template>
