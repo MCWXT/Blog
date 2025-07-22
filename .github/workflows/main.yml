@@ -31,13 +31,15 @@ jobs:
             _jq() {
               echo "${issue}" | base64 --decode | jq -r "${1}"
             }
-            # 把 \n 转成换行符
-            body=$(_jq '.body' | sed 's/\\n/\n/g')
+            body=$(_jq '.body')
 
-            title=$(echo "$body" | grep -A 1 '### 网站名称'    | tail -n 1 | xargs)
-            content=$(echo "$body" | grep -A 1 '### 站点介绍'  | tail -n 1 | xargs)
-            href=$(echo "$body"   | grep -A 1 '### 网站链接'  | tail -n 1 | xargs)
-            icon=$(echo "$body"   | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
+            # 将 body 写入临时文件，保证换行正确
+            echo "$body" > tmp_body.txt
+
+            title=$(grep -A 1 '### 网站名称' tmp_body.txt    | tail -n 1 | xargs)
+            content=$(grep -A 1 '### 站点介绍' tmp_body.txt  | tail -n 1 | xargs)
+            href=$(grep -A 1 '### 网站链接' tmp_body.txt     | tail -n 1 | xargs)
+            icon=$(grep -A 1 '### 网站图标链接' tmp_body.txt | tail -n 1 | xargs)
 
             id=$(_jq '.number')
 
