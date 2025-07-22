@@ -15,9 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Fetch issues from GitHub API
+      - name: Fetch only OPEN issues from GitHub API
         run: |
-          curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=all&labels=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7' \
+          curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=open&labels=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7&per_page=100' \
             -H 'Accept: application/vnd.github.v3+json' \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -o issues.json
