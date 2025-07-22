@@ -31,19 +31,14 @@ jobs:
             _jq() {
               echo ${issue} | base64 --decode | jq -r ${1}
             }
-
             body=$(_jq '.body')
-
             title=$(echo "$body" | grep -A 1 '### 网站名称' | tail -n 1 | xargs)
             content=$(echo "$body" | grep -A 1 '### 站点介绍' | tail -n 1 | xargs)
             href=$(echo "$body" | grep -A 1 '### 网站链接' | tail -n 1 | xargs)
             icon=$(echo "$body" | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
-
             id=$(_jq '.number')
-
             printf '{\n  "id": %s,\n  "title": "%s",\n  "content": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' "$id" "$title" "$content" "$href" "$icon" > out/$id.json
           done
-
           jq -s '.' out/*.json > issues.json
           echo "Parsed JSON array:"
           cat issues.json
