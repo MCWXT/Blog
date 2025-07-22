@@ -36,6 +36,8 @@ jobs:
 
             # 重点：把 \n 转换为换行
             _jq '.body' | sed 's/\\n/\n/g' > tmp_body.txt
+            
+            cat tmp_body.txt
 
             title=$(grep -A 1 '### 网站名称' tmp_body.txt    | tail -n 1 | xargs)
             content=$(grep -A 1 '### 站点介绍' tmp_body.txt  | tail -n 1 | xargs)
