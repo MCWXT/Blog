@@ -1,4 +1,4 @@
-name: Package Issues to JSON (Array)
+name: Package Issues to JSON
 
 on:
   schedule:
@@ -40,13 +40,13 @@ jobs:
           href=$(echo "$body" | grep -A 1 '### 网站链接' | tail -n 1 | xargs)
           icon=$(echo "$body" | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
 
-          cat > out/$(_jq '.number').json <<EOF
-          {
-            "title": "$title",
-            "content": "$content",
-            "href": "$href",
-            "icon": "$icon"
-          }
+          cat <<EOF > out/$(_jq '.number').json
+{
+  "title": "$title",
+  "content": "$content",
+  "href": "$href",
+  "icon": "$icon"
+}
 EOF
         done
 
