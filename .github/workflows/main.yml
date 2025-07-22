@@ -34,13 +34,14 @@ jobs:
 
             id=$(_jq '.number')
 
-            # 重点：把 \n 转换为换行
-            _jq '.body' | sed 's/\\n/\n/g' > tmp_body.txt
+            # 提取多行内容
+            jq -r '.body' issues.json > tmp_body.txt
 
-            title=$(grep -A 1 '### 网站名称' tmp_body.txt    | tail -n 1 | xargs)
-            content=$(grep -A 1 '### 站点介绍' tmp_body.txt  | tail -n 1 | xargs)
-            href=$(grep -A 1 '### 网站链接' tmp_body.txt     | tail -n 1 | xargs)
-            icon=$(grep -A 1 '### 网站图标链接' tmp_body.txt | tail -n 1 | xargs)
+            # 提取字段
+            title=$(awk '/### 网站名称/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            content=$(awk '/### 站点介绍/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            href=$(awk '/### 网站链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            icon=$(awk '/### 网站图标链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
 
             printf '{\n  "id": %s,\n  "title": "%s",\n  "content": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' \
               "$id" "$title" "$content" "$href" "$icon" > out/$id.json
