@@ -12,35 +12,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Fetch issues from GitHub API
-      run: |
-        curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=all&labels=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7' \
-        -H 'Accept: application/vnd.github.v3+json' \
-        -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-        -o issues.json
-        cat issues.json
+      - name: Fetch issues from GitHub API
+        run: |
+          curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=all&labels=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7' \
+          -H 'Accept: application/vnd.github.v3+json' \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -o issues.json
+          echo "Fetched issues:"
+          cat issues.json
 
-    - name: Parse issues to JSON array with ID
-      run: |
-        mkdir -p out
-        jq -r '.[] | @base64' issues.json | while read issue; do
-          _jq() {
-            echo ${issue} | base64 --decode | jq -r ${1}
-          }
+      - name: Parse issues to JSON array with ID
+        run: |
+          mkdir -p out
+          jq -r '.[] | @base64' issues.json | while read issue; do
+            _jq() {
+              echo ${issue} | base64 --decode | jq -r ${1}
+            }
 
-          body=$(_jq '.body')
+            body=$(_jq '.body')
 
-          title=$(echo "$body" | grep -A 1 '### 网站名称' | tail -n 1 | xargs)
-          content=$(echo "$body" | grep -A 1 '### 站点介绍' | tail -n 1 | xargs)
-          href=$(echo "$body" | grep -A 1 '### 网站链接' | tail -n 1 | xargs)
-          icon=$(echo "$body" | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
+            title=$(echo "$body" | grep -A 1 '### 网站名称' | tail -n 1 | xargs)
+            content=$(echo "$body" | grep -A 1 '### 站点介绍' | tail -n 1 | xargs)
+            href=$(echo "$body" | grep -A 1 '### 网站链接' | tail -n 1 | xargs)
+            icon=$(echo "$body" | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
 
-          id=$(_jq '.number')
+            id=$(_jq '.number')
 
-          cat > out/$id.json <<EOF
+            cat > out/$id.json <<EOF
 {
   "id": $id,
   "title": "$title",
@@ -49,20 +50,21 @@ jobs:
   "icon": "$icon"
 }
 EOF
-        done
+          done
 
-        jq -s '.' out/*.json > issues.json
-        cat issues.json
+          jq -s '.' out/*.json > issues.json
+          echo "Parsed JSON array:"
+          cat issues.json
 
-    - name: Upload to Cloudflare R2
-      run: |
-        pip install awscli
-        aws s3 cp issues.json s3://blog/data/json/issues.json \
-        --endpoint-url https://05b69c2cf1cc6b7312bd86130ff3d5f3.r2.cloudflarestorage.com \
-        --region auto \
-        --no-sign-request \
-        --profile default \
-        --acl public-read
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}
+      - name: Upload to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_SECRET_ACCESS_KEY }}
+        run: |
+          pip install awscli
+          aws s3 cp issues.json s3://blog/data/json/issues.json \
+            --endpoint-url https://05b69c2cf1cc6b7312bd86130ff3d5f3.r2.cloudflarestorage.com \
+            --region auto \
+            --no-sign-request \
+            --profile default \
+            --acl public-read
