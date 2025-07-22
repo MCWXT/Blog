@@ -1,11 +1,11 @@
-name: Package Issues to JSON
+name: Package Issues to JSON (Array with ID)
 
 on:
+  issues:
+    types: [opened, edited, closed, reopened, deleted]
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
-  issues:
-    types: [opened, edited, closed, deleted, labeled, unlabeled]
 
 jobs:
   package_issues:
@@ -17,15 +17,13 @@ jobs:
 
     - name: Fetch issues from GitHub API
       run: |
-        curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=all&labels=%E5%8F%8B%E9%93%BE%E6%8F%90%E4%BA%A4' \
+        curl -X GET 'https://api.github.com/repos/${{ github.repository }}/issues?state=all&labels=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7' \
         -H 'Accept: application/vnd.github.v3+json' \
         -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
         -o issues.json
-
-        echo "Fetched issues content:"
         cat issues.json
 
-    - name: Parse issues to array JSON
+    - name: Parse issues to JSON array with ID
       run: |
         mkdir -p out
         jq -r '.[] | @base64' issues.json | while read issue; do
@@ -40,8 +38,11 @@ jobs:
           href=$(echo "$body" | grep -A 1 '### 网站链接' | tail -n 1 | xargs)
           icon=$(echo "$body" | grep -A 1 '### 网站图标链接' | tail -n 1 | xargs)
 
-          cat <<EOF > out/$(_jq '.number').json
+          id=$(_jq '.number')
+
+          cat <<EOF > out/$id.json
 {
+  "id": $id,
   "title": "$title",
   "content": "$content",
   "href": "$href",
