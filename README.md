@@ -12,7 +12,9 @@
 
 ## 如何加入友链？
 
-[申请友链](https://github.com/MCWXT/Blog/issues/new?assignees=MCWXT&labels=%E5%8F%8B%E9%93%BE%E6%8F%90%E4%BA%A4&projects=&template=%E4%B8%8A%E4%BC%A0%E5%8F%8B%E9%93%BE.md&title=%E5%8F%8B%E9%93%BE%E7%94%B3%E8%AF%B7)
+[申请友链](https://github.com/MCWXT/Blog/issues/new)
+
+[视频教程](https://storage.mcwxt.top/assets/video/studio_video_1753181656109.mp4)
 
 点击上方按钮，并按照提示按照正确的格式提交申请，Github Actions 将会自动处理，并添加到博客首页！
 
