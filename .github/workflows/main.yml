@@ -24,7 +24,7 @@ jobs:
           echo "Fetched issues:"
           cat issues.json
 
-      - name: Parse issues to JSON array with ID
+      - name: Parse issues to JSON array with ID (using printf)
         run: |
           mkdir -p out
           jq -r '.[] | @base64' issues.json | while read issue; do
@@ -41,15 +41,7 @@ jobs:
 
             id=$(_jq '.number')
 
-            cat > out/$id.json <<EOF
-{
-  "id": $id,
-  "title": "$title",
-  "content": "$content",
-  "href": "$href",
-  "icon": "$icon"
-}
-EOF
+            printf '{\n  "id": %s,\n  "title": "%s",\n  "content": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' "$id" "$title" "$content" "$href" "$icon" > out/$id.json
           done
 
           jq -s '.' out/*.json > issues.json
