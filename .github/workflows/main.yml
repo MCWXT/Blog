@@ -40,7 +40,7 @@ jobs:
 
           id=$(_jq '.number')
 
-          cat <<EOF > out/$id.json
+          cat > out/$id.json <<EOF
 {
   "id": $id,
   "title": "$title",
