@@ -1,4 +1,4 @@
-name: Package Issues to JSON (Array with ID)
+name: Package Issues to JSON
 
 on:
   issues:
@@ -52,5 +52,4 @@ jobs:
           aws s3 cp issues.json s3://blog/data/json/issues.json \
             --endpoint-url https://05b69c2cf1cc6b7312bd86130ff3d5f3.r2.cloudflarestorage.com \
             --region auto \
-            --no-sign-request \
             --acl public-read
