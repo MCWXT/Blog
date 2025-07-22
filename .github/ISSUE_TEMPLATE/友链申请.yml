@@ -12,7 +12,7 @@ body:
       required: true
 
   - type: input
-    id: content
+    id: brief
     attributes:
       label: 站点介绍
       placeholder: 用简洁明了的语言描述你的站点

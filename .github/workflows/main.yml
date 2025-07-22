@@ -40,12 +40,12 @@ jobs:
             cat tmp_body.txt
 
             title=$(awk '/### 网站名称/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
-            content=$(awk '/### 站点介绍/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            brief=$(awk '/### 站点介绍/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
             href=$(awk '/### 网站链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
             icon=$(awk '/### 网站图标链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
 
-            printf '{\n  "id": %s,\n  "title": "%s",\n  "content": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' \
-              "$id" "$title" "$content" "$href" "$icon" > out/$id.json
+            printf '{\n  "id": %s,\n  "title": "%s",\n  "brief": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' \
+              "$id" "$title" "brief" "$href" "$icon" > out/$id.json
           done
 
           if [ "$(ls out | wc -l)" -eq 0 ]; then
