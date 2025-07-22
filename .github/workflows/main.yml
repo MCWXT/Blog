@@ -53,5 +53,4 @@ jobs:
             --endpoint-url https://05b69c2cf1cc6b7312bd86130ff3d5f3.r2.cloudflarestorage.com \
             --region auto \
             --no-sign-request \
-            --profile default \
             --acl public-read
