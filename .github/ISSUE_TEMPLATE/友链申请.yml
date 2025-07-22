@@ -1,0 +1,36 @@
+name: 友链申请
+description: 按提示填写内容，提交后请耐心等待审核。
+title: "[友链申请]: "
+labels: ["友链申请"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 网站名称
+      placeholder: 例如：REmcbbs
+    validations:
+      required: true
+
+  - type: input
+    id: content
+    attributes:
+      label: 站点介绍
+      placeholder: 用简洁明了的语言描述你的站点
+    validations:
+      required: true
+
+  - type: input
+    id: href
+    attributes:
+      label: 网站链接
+      placeholder: 例如：https://remcbbs.com
+    validations:
+      required: true
+
+  - type: input
+    id: icon
+    attributes:
+      label: 网站图标链接
+      placeholder: 例如：https://remcbbs.com/logo.png
+    validations:
+      required: true
