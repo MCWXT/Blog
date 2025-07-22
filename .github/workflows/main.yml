@@ -45,7 +45,7 @@ jobs:
             icon=$(awk '/### 网站图标链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
 
             printf '{\n  "id": %s,\n  "title": "%s",\n  "brief": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' \
-              "$id" "$title" "brief" "$href" "$icon" > out/$id.json
+              "$id" "$title" "$brief" "$href" "$icon" > out/$id.json
           done
 
           if [ "$(ls out | wc -l)" -eq 0 ]; then
