@@ -21,23 +21,39 @@ jobs:
             -H 'Accept: application/vnd.github.v3+json' \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -o issues.json
+          echo "Fetched issues:"
+          cat issues.json
 
-      - name: Parse issues to JSON array with ID via jq
+      - name: Parse issues to JSON array with ID
         run: |
-          jq '
-            [ .[]
-              | select(.body != null and .body != "")
-              | {
-                  id:      .number,
-                  parts:   (.body | split("\\n\\n")),
-                  title:   (.body | split("\\n\\n")[1]),
-                  content: (.body | split("\\n\\n")[3]),
-                  href:    (.body | split("\\n\\n")[5]),
-                  icon:    (.body | split("\\n\\n")[7])
-                }
-              | { id, title, content, href, icon }
-            ]
-          ' issues.json > issues.json
+          mkdir -p out
+          jq -r '.[] | select(.body != null and .body != "") | @base64' issues.json | while read issue; do
+            _jq() {
+              echo "${issue}" | base64 --decode | jq -r "${1}"
+            }
+
+            id=$(_jq '.number')
+
+            # 重点：把 \n 转换为换行
+            _jq '.body' | sed 's/\\n/\n/g' > tmp_body.txt
+
+            title=$(grep -A 1 '### 网站名称' tmp_body.txt    | tail -n 1 | xargs)
+            content=$(grep -A 1 '### 站点介绍' tmp_body.txt  | tail -n 1 | xargs)
+            href=$(grep -A 1 '### 网站链接' tmp_body.txt     | tail -n 1 | xargs)
+            icon=$(grep -A 1 '### 网站图标链接' tmp_body.txt | tail -n 1 | xargs)
+
+            printf '{\n  "id": %s,\n  "title": "%s",\n  "content": "%s",\n  "href": "%s",\n  "icon": "%s"\n}\n' \
+              "$id" "$title" "$content" "$href" "$icon" > out/$id.json
+          done
+
+          if [ "$(ls out | wc -l)" -eq 0 ]; then
+            echo '[]' > issues.json
+          else
+            jq -s '.' out/*.json > issues.json
+          fi
+
+          echo "Parsed JSON array:"
+          cat issues.json
 
       - name: Upload to Cloudflare R2
         env:
