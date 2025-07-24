@@ -1,0 +1,31 @@
+<div>
+  <div class="carousel rounded-xs w-100 aspect-16/9 mb-2">
+    <router-link class="carousel-item w-full" v-for="item in carousel" :to="{ path: '/link', query: { url: item.href }}">
+      <img class="object-cover" :src="item.image" class="w-full" alt="" />
+    </router-link>
+  </div>
+  <template v-if="videos">
+    <div class="flex flex-wrap justify-evenly items-stretch">
+      <router-link class="w-46 my-2 hover:bg-zinc-200" v-for="item in videos" :to="'/bilibili/' + item.bvid">
+        <div class="aspect-4/3 relative rounded-lg overflow-hidden">
+          <img class="object-cover size-full" :src="item.cover" alt="">
+          <div class="m-2 p-1 absolute bottom-0 end-0 bg-black/50 text-white text-xs rounded-sm">{{item.length}}</div>
+        </div>
+        <div class="p-2">
+          <div class="">
+            <h3 class="truncate-wrap text-md" style="--line: 2;">{{item.title}}</h3>
+          </div>
+          <div class="flex text-xs text-gray-600 my-1">
+            <span class="flex-none mr-2"><i class="mr-1 bi bi-play-circle"></i>{{item.play}}</span>
+            <span class="flex-auto"><i class="mr-1 bi bi-chat-square-text"></i>{{item.danmaku}}</span>
+            <span class="flex-1">{{item.publish_time_text}}</span>
+          </div>
+          <div class="flex text-sm text-gray-600">
+            <p class="flex-1">{{item.author}}</p>
+            <i class="flex-none bi bi-three-dots-vertical"></i>
+          </div>
+        </div>
+      </router-link>
+    </div>
+  </template>
+</div>

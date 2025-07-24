@@ -73,19 +73,21 @@ const routes = [
     meta: {
       title: '授权'
     }
-  }, /* {
+  }, {
     path: '/bilibili',
-    children: [
-      {
-        path: '',
-        name: 'BiliBiliPopular',
-        component: importComponent('/views/bilibili/Popular'),
-        meta: {
-          title: 'B站热门'
-        }
-      }
-    ]
-  }, */
+    name: 'Videos',
+    component: importComponent('/views/bilibili/Videos'),
+    meta: {
+      title: '视频'
+    }
+  }, {
+    path: '/bilibili/:bvid',
+    name: 'Video',
+    component: importComponent('/views/bilibili/Video'),
+    meta: {
+      title: '视频'
+    }
+  }
 ]
 const router = createRouter({
   history: createWebHistory(),

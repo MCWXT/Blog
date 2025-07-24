@@ -1,6 +1,4 @@
 import { Axios } from 'axios';
 import { httproxy } from 'tao';
-const axios = new Axios({
-  baseURL: 'https://mcwxt.top/api/bilibili',
-});
+const axios = new Axios({});
 export { axios }
