@@ -3,13 +3,8 @@ export default [
     name: '主页',
     to: '/'
   }, {
-    name: 'B站',
-    to: {
-      path: '/linkto/bilibili',
-      query: {
-        url: 'https://space.bilibili.com/3493283118451294'
-      }
-    }
+    name: '视频',
+    to: '/bilibili'
   }, {
     name: '讨论',
     to: '/discussions'
