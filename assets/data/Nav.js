@@ -16,15 +16,6 @@ export default [
         name: '下载',
         to: '/mc/download'
       },
-      {
-        name: '云盘',
-        to: {
-          path: '/linkto/pan',
-          query: {
-            url: '//pan.mcwxt.top'
-          }
-        }
-      }
     ]
   }, {
     name: 'Cloud盘',
@@ -34,13 +25,5 @@ export default [
         url: '//cloud.mcwxt.top'
       }
     }
-  }, {
-    name: 'Gemini',
-    to: {
-      path: '/linkto/gemini',
-      query: {
-        url: '//gemini.mcwxt.top'
-      }
-    }
-  }
+  },
 ]
