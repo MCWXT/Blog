@@ -4,7 +4,7 @@ export default [
     to: '/'
   }, {
     name: '视频',
-    to: '/bilibili'
+    to: '/videos'
   }, {
     name: '讨论',
     to: '/discussions'

@@ -15,5 +15,5 @@ export default {
     }
   },
   name: 'Videos',
-  template: await getTemplate('/views/bilibili/Videos')
+  template: await getTemplate('/views/video/Videos')
 }
