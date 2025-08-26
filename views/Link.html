@@ -1,9 +1,12 @@
 <div class="my-20">
-  <div class="card w-72 shadow-xl mx-auto">
+  <div class="card card-border w-72 mx-auto">
     <div class="card-body">
-      <h2 class="card-title">跳转至:</h2>
+      <div class="flex justify-between">
+        <h2 class="text-xl font-bold">跳转至:</h2>
+        <span class="text-xs">{{statusText}}</span>
+      </div>
       <div class="py-5">
-        <p class="truncate">{{$route.query.url}}</p>
+        <p class="truncate text-base-content/90">{{$route.query.url}}</p>
       </div>
       <div class="card-actions justify-end">
         <a :href="$route.query.url" target="_blank" class="btn btn-primary">继续</a>
