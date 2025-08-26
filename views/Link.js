@@ -9,7 +9,7 @@ export default {
       location.href = route.query.url;
     }
     const statusText = ref();
-    fetch('http://proxy.mcwxt.top/' + route.query.url).then((res) => { statusText.value = res.statusText; });
+    fetch('https://proxy.mcwxt.top/' + route.query.url).then((res) => { statusText.value = res.statusText; });
     return {
       statusText
     }
