@@ -4,9 +4,9 @@
     <div class="w-74 my-3 mx-auto"><img src="/assets/img/remcbbsBT.png" alt=""></div>
     <div class="alert alert-vertical w-72 my-4 mx-auto">
       <span>
-        <i class="bi bi-exclamation-circle text-xl text-info"></i><br>
+        <icon class="text-xl text-info" icon="mingcute:information-fill"></icon><br>
         <b>仅供体验，请支持正版</b><br>
-        正版购买：<a href="https://www.minecraft.net/zh-hans/store/minecraft-android" class="link-success text-decoration-none">官方页面<i class="bi bi-link-45deg"></i></a>
+        正版购买：<a href="https://www.minecraft.net/zh-hans/store/minecraft-android" class="link-success text-decoration-none">官方页面<icon icon="mingcute:link-fill"></icon></a>
       </span>
     </div>
   </div>
@@ -30,7 +30,7 @@
                 <span v-else class="text-success">正式版</span>
               </td>
               <td class="text-center">{{apk.size}}</td>
-              <td class="text-center"><a class="btn btn-primary" @click="download(apk.version, apk.info_key)"><i class="bi bi-download"></i></a></td>
+              <td class="text-center"><a class="btn btn-primary" @click="download(apk.version, apk.info_key)"><icon icon="mingcute:download-2-fill"></icon></a></td>
             </tr>
           </tbody>
         </template>

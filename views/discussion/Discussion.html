@@ -4,7 +4,7 @@
     <span class="my-2">更新于: {{discussion.updated_at}}</span>
   </div>
   <div class="p-2">
-    <div class="border rounded">
+    <div class="border border-base-300 rounded">
       <div class="my-2">
         <img class="rounded-lg mx-2 w-10 inline" :src="discussion.user.avatar_url" alt="">
         <span>{{discussion.user.login}}</span>
@@ -24,7 +24,7 @@
         <a class="btn btn-success btn-sm absolute end-0" role="button" :href="'//github.com/MCWXT/mcwxt.github.io/discussions/' + number">新评论</a>
       </div>
       <template v-if="comments[0]">
-        <div class="m-2 border rounded" v-for="comment in comments">
+        <div class="m-2 border border-base-300 rounded" v-for="comment in comments">
           <div class="py-2">
             <img class="rounded-full inline mx-2 w-10" :src="comment.user.avatar_url" alt="">
             <span>{{comment.user.login}}</span>

@@ -1,7 +1,6 @@
-@import url("/cdn_modules/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url("/cdn_modules/daisyui@5.0.46/daisyui.css");
 @import url("/cdn_modules/daisyui@5.0.46/themes.min.css");
-@import url("/assets/style/app.css");
+
 * {
   font-family: sans-serif !important;
   --radius-field: 0.5rem;
@@ -9,4 +8,13 @@
 
 img {
   max-width: 100%;
+}
+
+.truncate-wrap {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line);
+  -webkit-box-orient: vertical;
 }
