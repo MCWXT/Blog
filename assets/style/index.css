@@ -7,6 +7,10 @@
   --depth: 0;
 }
 
+pre {
+  overflow: auto;
+}
+
 img {
   max-width: 100%;
 }
