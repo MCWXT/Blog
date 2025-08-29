@@ -4,6 +4,7 @@
 * {
   font-family: sans-serif !important;
   --radius-field: 0.5rem;
+  --depth: 0;
 }
 
 img {
