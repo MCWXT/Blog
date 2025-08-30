@@ -1,19 +1,30 @@
 import { ref } from 'vue';
-import { getTemplate, cache } from 'tao';
-import { useRoute } from 'vue-router';
-import { marked } from '/cdn_modules/marked@15.0.5/lib/marked.esm.min.js';
-import { octokit, config} from '/modules/server/github.js';
+import { getTemplate } from 'tao';
+import { useRoute, useRouter } from 'vue-router';
+import { octokit, config } from '/modules/server/github.js';
 import 'https://esm.sh/giscus';
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
     const number = route.params.number;
-    const discussion = ref({});
-    octokit.request(`GET /repos/{owner}/{repo}/discussions/${number}`, config).then((response) => discussion.value = response.data);
+    const discussion = ref();
+    let _discussion;
+    octokit.request(`GET /repos/{owner}/{repo}/discussions/${number}`, config).then((response) => {
+      if (response.status !== 200) {
+        router.push('/error/' + response.status);
+      }
+      _discussion = response.data;
+      octokit.request('POST /markdown', {
+        text: _discussion.body,
+      }).then((response) => {
+        _discussion.body = response.data;
+        discussion.value = _discussion;
+      });
+    });
     return {
       discussion,
       number,
-      marked,
     }
   },
   name: 'Discussion',

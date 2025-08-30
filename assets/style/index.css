@@ -1,14 +1,11 @@
 @import url("/cdn_modules/daisyui@5.0.46/daisyui.css");
 @import url("/cdn_modules/daisyui@5.0.46/themes.min.css");
+@import url("/cdn_modules/github-markdown-css@5.8.1/github-markdown.min.css");
 
 * {
   font-family: sans-serif !important;
   --radius-field: 0.5rem;
   --depth: 0;
-}
-
-pre {
-  overflow: auto;
 }
 
 img {

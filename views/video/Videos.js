@@ -3,7 +3,7 @@ import { getTemplate } from 'tao';
 import { axios } from '/modules/server/bilibili.js';
 export default {
   setup() {
-    const videos = ref([]);
+    const videos = ref();
     const carousel = [
       { image: 'https://storage.mcwxt.top/assets/img/IMG_20250725_004145.jpg', href: 'https://github.com/mcwxt/Blog'},
       { image: 'https://www.dmoe.cc/random.php', },
