@@ -8,7 +8,7 @@ export default {
       if (response.status !== 200) {
         router.push('/error/' + response.status);
       }
-      discussions.value = response.data;
+      discussions.value = response.data.reverse();
     });
     return {
       discussions
