@@ -1,12 +1,15 @@
 <div>
-  <div class="relative border rounded h-64" style="background: url('/assets/img/huTao.jpg') no-repeat center;background-size: cover;">
+  <div class="relative border border-base-300 rounded h-64" style="background: url('/assets/img/huTao.jpg') no-repeat center;background-size: cover;">
     <h1 class="text-6xl" class="absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold">Discussions</h1>
   </div>
   <div>
     <div>
-      <div class="m-2 mx-4 relative">
-        <span class="text-xl">{{discussions.length}}</span>
-        <a class="btn btn-success btn-sm absolute end-0" role="button" href="//github.com/MCWXT/mcwxt.github.io/discussions/new/choose">新讨论</a>
+      <div class="m-2 mx-4 flex">
+        <div class="text-xl flex-1">
+          <span v-if="discussions">{{discussions.length}}</span>
+          <span v-else>0</span>
+        </div>
+        <a class="btn btn-primary btn-sm flex-none end-0" role="button" href="//github.com/MCWXT/mcwxt.github.io/discussions/new/choose">新讨论</a>
       </div>
     </div>
     <template v-if="discussions">
@@ -22,7 +25,7 @@
                 <span>{{discussion.user.login}}</span>
               </div>
               <div>
-                <icon class="me-1" icon="mingcute:comment-fill"></icon>
+                <icon class="me-1 text-base-content/80" icon="mingcute:comment-fill"></icon>
                 <span>{{discussion.comments}}</span>
               </div>
             </div>
@@ -30,5 +33,25 @@
         </router-link>
       </div>
     </template>
+    <div v-else>
+      <div class="m-3 divide-y">
+        <div class="block p-2 transition border-base-300" v-for="(_, index) in Array(2)" :key="index">
+          <div class="mb-2">
+            <div class="skeleton h-7 w-3/4 mb-1"></div>
+            <div class="skeleton h-5 w-1/2"></div>
+          </div>
+          <div class="flex items-center">
+            <div class="me-5 flex items-center">
+              <div class="skeleton rounded-full me-2 w-10 h-10"></div>
+              <div class="skeleton h-5 w-20"></div>
+            </div>
+            <div class="flex items-center">
+              <div class="skeleton me-1 w-5 h-5"></div>
+              <div class="skeleton h-5 w-8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

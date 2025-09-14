@@ -1,11 +1,11 @@
 import { ref } from 'vue';
 import { getTemplate } from 'tao';
 export default {
-  props: ['parent'],
+  props: ['parent', 'label'],
   setup() {
-
+    
     return {
-
+      
     }
   },
   name: 'SubMenus',

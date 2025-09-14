@@ -10,9 +10,23 @@ export default {
       'Discussions',
       'McDownload',
     ]
+    const toast = ref([]);
+    document.addEventListener('toast', (e) => {
+      e.detail.data.icon = {
+        info: 'mingcute:information-line',
+        success: 'mingcute:check-circle-line',
+        warning: 'mingcute:warning-line',
+        error: 'mingcute:close-circle-line',
+      }[e.detail.data.type];
+      toast.value.push(e.detail.data);
+      setTimeout(() => {
+        toast.value = toast.value.filter((item) => item.content !== e.detail.data.content);
+      }, 1500)
+    });
     return {
       link,
-      include
+      include,
+      toast
     }
   },
   components: {

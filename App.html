@@ -3,6 +3,12 @@
   <div class="drawer-content">
     <header class="h-16">
       <nav-bar class="fixed left-0 top-0 z-50"></nav-bar>
+      <div class="toast toast-top toast-center z-40 mt-16">
+        <div class="alert" :class="`alert-${item.type} alert-${item.style}`" v-for="item in toast">
+          <icon class="text-xl" :icon="item.icon"></icon>
+          <span>{{item.content}}</span>
+        </div>
+      </div>
     </header>
     <main>
       <router-view v-slot="{ Component }">
@@ -11,7 +17,8 @@
         </keep-alive>
       </router-view>
     </main>
-    <footer class="footer bg-base-200 text-base-content p-10">
+    <div class="border-t border-base-300 mx-8 mt-8"></div>
+    <footer class="footer bg-base-100 text-base-content p-10">
       <aside>
         <span class="text-2xl font-bold">MCWXT</span>
         <p>感谢访问我的博客！</p><br>
@@ -33,5 +40,5 @@
       </nav>
     </footer>
   </div>
-  <drawer-side></drawer-side>
+  <drawer-side class="z-100"></drawer-side>
 </div>

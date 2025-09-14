@@ -1,14 +1,14 @@
 <div class="drawer-side">
-  <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+  <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay" ref="label"></label>
   <div class="bg-base-100 h-full w-72">
     <div>
-      <div class="p-5 text-center">
+      <div class="py-4 border-b border-base-300 mx-5 text-center">
         <span class="text-xl">MCWXT的个人博客</span>
       </div>
     </div>
     <div>
       <ul class="menu p-5 w-auto">
-        <sub-menus class="mb-1" :parent="item" v-for="item in nav"></sub-menus>
+        <sub-menus class="" :parent="item" :label="label" v-for="item in nav"></sub-menus>
       </ul>
     </div>
   </div>

@@ -27,4 +27,13 @@ const cache = {
     localStorage.clear();
   }
 }
-export { axios, getTemplate, importComponent, httproxy, cache }
+const toast = (data) => {
+  document.dispatchEvent(new CustomEvent('toast', {
+    detail: {
+      data
+    },
+    bubbles: true,
+    cancelable: true
+  }));
+}
+export { axios, getTemplate, importComponent, httproxy, cache, toast }

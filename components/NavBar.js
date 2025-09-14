@@ -1,13 +1,23 @@
 import { ref, watch } from 'vue';
 import { getTemplate, cache } from 'tao';
-import themes from '/assets/data/Themes.js';
 export default {
   setup() {
-    const currentTheme = ref(cache.getItem('currentTheme') || 'light');
-    watch(currentTheme, (theme) => cache.setItem('currentTheme', theme));
+    const isLogin = Boolean(cache.getItem('access_token'));
+    const themeIsDark = ref(localStorage.getItem('themeIsDark') || false);
+    watch(themeIsDark, (themeIsDark) => { localStorage.setItem('themeIsDark', themeIsDark) });
+    const navbarIsOpacity = ref(true);
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbarIsOpacity.value = true;
+      } else {
+        navbarIsOpacity.value = false;
+      }
+    });
     return {
-      themes,
-      currentTheme
+      themeIsDark,
+      navbarIsOpacity,
+      isLogin
     }
   },
   name: 'NavBar',

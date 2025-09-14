@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { getTemplate } from 'tao';
+import { getTemplate, toast } from 'tao';
 import { useRoute, useRouter } from 'vue-router';
 import { octokit, config } from '/modules/server/github.js';
 import 'https://esm.sh/giscus';
@@ -12,7 +12,10 @@ export default {
     let _discussion;
     octokit.request(`GET /repos/{owner}/{repo}/discussions/${number}`, config).then((response) => {
       if (response.status !== 200) {
-        router.push('/error/' + response.status);
+        toast({
+          type: 'error',
+          content: response.status,
+        });
       }
       _discussion = response.data;
       octokit.request('POST /markdown', {

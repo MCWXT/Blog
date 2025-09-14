@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 border-b border-base-300">
+<div class="navbar bg-base-100 transition duration-500 border-b border-base-300 backdrop-blur-sm" :class="{ 'bg-[var(--color-base-100)]/[95%]': navbarIsOpacity}">
   <div class="flex-1">
     <label class="btn btn-square btn-ghost lg:invisible" for="my-drawer" aria-label="open sidebar">
       <icon class="text-2xl" icon="mingcute:menu-line"></icon>
@@ -14,16 +14,12 @@
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content block overflow-y-auto max-h-96 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
         <li><router-link to="/">主页</router-link></li>
-        <li><router-link to="/login">登录</router-link></li>
+        <li><router-link to="/login">登录<span class="badge badge-xs" v-if="isLogin">已登录</span></router-link></li>
         <li>
-          <details>
-            <summary>主题</summary>
-            <ul tabindex="0">
-              <li v-for="theme in themes">
-                <input type="radio" name="theme-dropdown" class="theme-controller btn btn-sm btn-block btn-ghost justify-start" v-model="currentTheme" :aria-label="theme" :value="theme" />
-              </li>
-            </ul>
-          </details>
+          <label class="swap swap-rotate justify-start">
+            <input type="checkbox" class="theme-controller" value="dark" v-model="themeIsDark"/>
+            <span>{{ themeIsDark ? '黑夜' : '白天' }}</span>
+          </label>
         </li>
       </ul>
     </div>
