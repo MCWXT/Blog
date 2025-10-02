@@ -6,12 +6,13 @@
     <div class="p-2">
       <h2 class="text-lg">{{video.title}}</h2>
       <div class="flex text-sm text-gray-600 m-2">
-        <span class="mr-4"><icon icon="mingcute:play-circle-fill"></icon> {{video.play}}</span>
-        <span class="mr-4"><icon icon="mingcute:danmaku-fill"></icon> {{video.danmaku}}</span>
-        <span class="mr-4">{{video.publish_time_text}}</span>
+        <span class="mr-4"><icon icon="mingcute:play-circle-fill"></icon> {{formatter.format(video.stat.view)}}</span>
+        <span class="mr-4"><icon icon="mingcute:danmaku-fill"></icon> {{formatter.format(video.stat.danmaku)}}</span>
+        <span class="mr-4">{{formatTimestamp(video.pubdate)}}</span>
       </div>
-      <div class="text-sm m-2">
-        <span>{{video.bvid}}</span>
+      <div class="text-xs text-base-content/80 m-2">
+        <span>{{video.bvid}}</span><br />
+        <p class="mt-2">{{video.desc}}</p>
       </div>
     </div>
   </template>

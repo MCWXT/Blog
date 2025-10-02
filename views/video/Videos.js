@@ -1,17 +1,20 @@
 import { ref } from 'vue';
-import { getTemplate } from 'tao';
+import { getTemplate, formatter, formatTimestamp, formatTime } from 'tao';
 import { axios } from '/modules/server/bilibili.js';
 export default {
   setup() {
     const videos = ref();
     const carousel = [
-      { image: 'https://storage.mcwxt.top/assets/img/IMG_20250725_004145.jpg', href: 'https://github.com/mcwxt/Blog'},
       { image: 'https://www.dmoe.cc/random.php', },
+      { image: 'https://storage.mcwxt.top/assets/img/IMG_20250725_004145.jpg', href: 'https://github.com/mcwxt/Blog' },
     ]
-    axios.get('/assets/data/json/bilivideo.json').then((response) => videos.value = JSON.parse(response.data).data.item).catch((error) => alert(error));
+    axios.get('/video/archive/related').then((response) => videos.value = JSON.parse(response.data).data).catch((error) => alert(error));
     return {
       carousel,
-      videos
+      videos,
+      formatter,
+      formatTimestamp,
+      formatTime
     }
   },
   name: 'Videos',

@@ -8,20 +8,20 @@
     <div class="flex flex-wrap justify-evenly items-stretch w-full">
       <router-link class="w-42 my-2 hover:bg-zinc-200" v-for="item in videos" :to="'/videos/' + item.bvid">
         <div class="aspect-4/3 relative rounded-lg overflow-hidden">
-          <img class="object-cover size-full" :src="item.cover" alt="">
-          <div class="m-2 p-1 absolute bottom-0 end-0 bg-black/50 text-white text-xs rounded-sm">{{item.length}}</div>
+          <img class="object-cover size-full" :src="item.pic" alt="">
+          <div class="m-2 p-1 absolute bottom-0 end-0 bg-black/50 text-white text-xs rounded-sm">{{formatTime(item.duration)}}</div>
         </div>
         <div class="p-2">
           <div class="">
             <h3 class="truncate-wrap text-md" style="--line: 2;">{{item.title}}</h3>
           </div>
           <div class="flex text-xs text-gray-600 my-1">
-            <span class="flex-none mr-2"><icon icon="mingcute:play-circle-fill"></icon> {{item.play}}</span>
-            <span class="flex-auto"><icon icon="mingcute:danmaku-fill"></icon> {{item.danmaku}}</span>
-            <span class="flex-1 text-nowrap">{{item.publish_time_text}}</span>
+            <span class="flex-none mr-2"><icon icon="mingcute:play-circle-fill"></icon> {{formatter.format(item.stat.view)}}</span>
+            <span class="flex-auto"><icon icon="mingcute:danmaku-fill"></icon> {{formatter.format(item.stat.danmaku)}}</span>
+            <span class="flex-1 text-nowrap">{{formatTimestamp(item.pubdate)}}</span>
           </div>
           <div class="flex text-sm text-gray-600">
-            <p class="flex-1">{{item.author}}</p>
+            <p class="flex-1">{{item.owner.name}}</p>
             <icon class="flex-none m-1" icon="mingcute:more-2-fill"></icon>
           </div>
         </div>
