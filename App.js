@@ -8,6 +8,7 @@ export default {
     const include = [
       'Home',
       'Discussions',
+      'Videos',
       'McDownload',
     ]
     const toast = ref([]);
