@@ -8,7 +8,7 @@ export default {
       { image: 'https://www.dmoe.cc/random.php', },
       { image: 'https://storage.mcwxt.top/assets/img/IMG_20250725_004145.jpg', href: 'https://github.com/mcwxt/Blog' },
     ]
-    axios.get('/video/archive/related').then((response) => videos.value = JSON.parse(response.data).data).catch((error) => alert(error));
+    axios.get('/video').then((response) => videos.value = JSON.parse(response.data).data).catch((error) => alert(error));
     return {
       carousel,
       videos,
