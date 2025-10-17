@@ -17,3 +17,8 @@ img {
   -webkit-line-clamp: var(--line);
   -webkit-box-orient: vertical;
 }
+
+.themeIsDark {
+  background: #00000000;
+  color: #FFFFFF;
+}

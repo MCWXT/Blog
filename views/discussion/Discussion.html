@@ -11,7 +11,7 @@
           <span>{{discussion.user.login}}</span>
         </div>
         <div class="p-2">
-          <div class="mx-2 markdown-body" v-html="discussion.body">
+          <div class="mx-2 markdown-body" :class="{ 'themeIsDark': themeIsDark }" v-html="discussion.body">
             
           </div>
         </div>
@@ -43,7 +43,7 @@
   </div>
   <div>
     <div class="my-4 px-4">
-      <giscus-widget repo="MCWXT/Blog" id="R_kgDOLz187g" mapping="number" :term="number" reactionsenabled="1" emitmetadata="0" inputposition="top" theme="preferred_color_scheme" lang="zh-CN" loading="lazy" crossorigin="anonymous"></giscus-widget>
+      <giscus-widget repo="MCWXT/Blog" id="R_kgDOLz187g" mapping="number" :term="number" reactionsenabled="1" emitmetadata="0" inputposition="top" theme="" lang="zh-CN" loading="lazy" crossorigin="anonymous"></giscus-widget>
     </div>
   </div>
 </div>

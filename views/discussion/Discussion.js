@@ -5,6 +5,7 @@ import { octokit, config } from '/modules/server/github.js';
 import 'https://esm.sh/giscus';
 export default {
   setup() {
+    const themeIsDark = ref(localStorage.getItem('themeIsDark') === 'true');
     const route = useRoute();
     const router = useRouter();
     const number = route.params.number;
@@ -28,6 +29,7 @@ export default {
     return {
       discussion,
       number,
+      themeIsDark
     }
   },
   name: 'Discussion',
