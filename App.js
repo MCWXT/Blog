@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { getTemplate } from 'tao';
+import { getTemplate, tokenExpired } from 'tao';
 import NavBar from '/components/NavBar.js';
 import DrawerSide from '/components/DrawerSide.js';
 import link from '/assets/data/Link.js';
@@ -24,6 +24,7 @@ export default {
         toast.value = toast.value.filter((item) => item.content !== e.detail.data.content);
       }, 1500)
     });
+    tokenExpired();
     return {
       link,
       include,

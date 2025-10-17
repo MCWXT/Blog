@@ -1,4 +1,6 @@
 import { Axios } from 'axios';
+import { octokit } from '/modules/server/github.js';
+
 const axios = new Axios({});
 
 const getTemplate = async (src) => {
@@ -85,4 +87,18 @@ const formatTimestamp = (timestamp) => {
   return `${year}年${month}月`;
 }
 
-export { axios, getTemplate, importComponent, httproxy, cache, toast, formatter, formatTimestamp, formatTime }
+const tokenExpired = () => {
+  if (!localStorage.getItem('access_token')) {
+    return;
+  }
+  octokit.request('GET /user').catch((response) => {
+    toast({
+      type: 'error',
+      content: '登录过期，请重新登录'
+    });
+    localStorage.removeItem('access_token');
+    return;
+  })
+}
+
+export { axios, getTemplate, importComponent, httproxy, cache, toast, formatter, formatTimestamp, formatTime, tokenExpired }
