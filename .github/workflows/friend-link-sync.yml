@@ -13,6 +13,7 @@ jobs:
       - name: 提取表单数据并发送到API
         env:
           API_KEY: ${{ secrets.FRIEND_LINK_API_KEY }}
+          CLOUDFLARE_BYPASS: ${{ secrets.CLOUDFLARE_BYPASS_TOKEN }}
         run: |
           # 从issue body中提取表单数据
           BODY='${{ github.event.issue.body }}'
@@ -48,28 +49,27 @@ jobs:
           EOF
           )
           
-          echo "正在发送数据到API..."
-          echo "API URL: https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}"
-          echo "API_KEY: $API_KEY"
-          echo "请求数据: $JSON_DATA"
+          echo "🚀 发送请求（绕过Cloudflare保护）..."
           
-          # 发送到API并捕获完整响应
+          # 添加 Cloudflare 绕过头
           RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}" \
             -H "Content-Type: application/json" \
-            -H "Authorization: Bearer Lwp18292763080" \
+            -H "Authorization: Bearer $API_KEY" \
+            -H "User-Agent: GitHub-Actions-Webhook/1.0" \
+            -H "CF-Access-Client-Id: $CLOUDFLARE_BYPASS" \
+            -H "X-Forwarded-For: 1.1.1.1" \
             -d "$JSON_DATA")
           
-          # 分离HTTP状态码和响应体
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
           RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
           
           echo "HTTP状态码: $HTTP_CODE"
-          echo "API响应: $RESPONSE_BODY"
           
-          # 检查请求是否成功
-          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "✅ API调用成功"
+          if [ "$HTTP_CODE" -eq 200 ]; then
+            echo "✅ 请求成功"
           else
-            echo "❌ API调用失败"
+            echo "❌ 请求失败"
+            echo "响应预览:"
+            echo "$RESPONSE_BODY" | head -c 500
             exit 1
           fi
