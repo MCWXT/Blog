@@ -48,14 +48,27 @@ jobs:
           EOF
           )
           
-          # 发送到API
-          curl -X POST "https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}" \
+          echo "正在发送数据到API..."
+          echo "API URL: https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}"
+          echo "请求数据: $JSON_DATA"
+          
+          # 发送到API并捕获完整响应
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $API_KEY" \
-            -d "$JSON_DATA"
-            
+            -d "$JSON_DATA")
+          
+          # 分离HTTP状态码和响应体
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
           RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
           
           echo "HTTP状态码: $HTTP_CODE"
           echo "API响应: $RESPONSE_BODY"
+          
+          # 检查请求是否成功
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "✅ API调用成功"
+          else
+            echo "❌ API调用失败"
+            exit 1
+          fi
