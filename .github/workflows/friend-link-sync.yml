@@ -53,3 +53,9 @@ jobs:
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $API_KEY" \
             -d "$JSON_DATA"
+            
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
+          
+          echo "HTTP状态码: $HTTP_CODE"
+          echo "API响应: $RESPONSE_BODY"
