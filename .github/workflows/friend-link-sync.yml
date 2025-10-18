@@ -1,0 +1,55 @@
+name: 友链申请同步到外部API
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened, deleted]
+
+jobs:
+  sync_friend_link:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, '友链申请')
+    
+    steps:
+      - name: 提取表单数据并发送到API
+        env:
+          API_KEY: ${{ secrets.FRIEND_LINK_API_KEY }}
+        run: |
+          # 从issue body中提取表单数据
+          BODY='${{ github.event.issue.body }}'
+          
+          extract_field() {
+            echo "$BODY" | grep -A 1 "$1" | tail -1 | sed 's/^\*\*//' | sed 's/\*\*$//' | xargs
+          }
+          
+          TITLE=$(extract_field "网站名称")
+          BRIEF=$(extract_field "站点介绍") 
+          URL=$(extract_field "网站链接")
+          ICON=$(extract_field "网站图标链接")
+          REMARKS=$(extract_field "备注信息")
+          
+          # 构建JSON数据
+          JSON_DATA=$(cat << EOF
+          {
+            "issue_number": ${{ github.event.issue.number }},
+            "issue_title": "${{ github.event.issue.title }}",
+            "issue_state": "${{ github.event.issue.state }}",
+            "issue_url": "${{ github.event.issue.html_url }}",
+            "created_at": "${{ github.event.issue.created_at }}",
+            "updated_at": "${{ github.event.issue.updated_at }}",
+            "user_login": "${{ github.event.issue.user.login }}",
+            "user_url": "${{ github.event.issue.user.html_url }}",
+            "site_title": "$TITLE",
+            "site_brief": "$BRIEF",
+            "site_url": "$URL",
+            "site_icon": "$ICON",
+            "remarks": "$REMARKS",
+            "repository": "${{ github.repository }}"
+          }
+          EOF
+          )
+          
+          # 发送到API
+          curl -X POST "https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $API_KEY" \
+            -d "$JSON_DATA"
