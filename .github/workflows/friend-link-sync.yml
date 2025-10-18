@@ -10,15 +10,23 @@ jobs:
     if: contains(github.event.issue.labels.*.name, '友链申请')
     
     steps:
-      - name: 发送友链申请数据到API
+      - name: 处理友链申请
         env:
           API_KEY: ${{ secrets.FRIEND_LINK_API_KEY }}
         run: |
-          # 对于 deleted 事件，只发送 issue_number
-          if [ "${{ github.event.action }}" = "deleted" ]; then
-            JSON_DATA='{"issue_number": '${{ github.event.issue.number }}'}'
+          # 设置变量
+          ACTION="${{ github.event.action }}"
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          API_URL="http://61.150.125.46:3000/issues/friendlink/$ACTION"
+          
+          # 删除事件 - 只发送issue_number
+          if [ "$ACTION" = "deleted" ]; then
+            curl -X POST "$API_URL" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $API_KEY" \
+              -d "{\"issue_number\": $ISSUE_NUMBER}"
           else
-            # 从issue body中提取表单数据
+            # 提取表单数据
             BODY='${{ github.event.issue.body }}'
             
             extract_field() {
@@ -35,30 +43,12 @@ jobs:
             ICON=$(extract_field "🖼️ 网站图标链接" "📋 备注信息")
             REMARKS=$(extract_field "📋 备注信息" "")
             
-            # 构建JSON数据 - 注意EOF不能缩进
-            JSON_DATA=$(cat << EOF
-{
-  "issue_number": ${{ github.event.issue.number }},
-  "issue_title": "${{ github.event.issue.title }}",
-  "issue_state": "${{ github.event.issue.state }}",
-  "issue_url": "${{ github.event.issue.html_url }}",
-  "created_at": "${{ github.event.issue.created_at }}",
-  "updated_at": "${{ github.event.issue.updated_at }}",
-  "user_login": "${{ github.event.issue.user.login }}",
-  "user_url": "${{ github.event.issue.user.html_url }}",
-  "site_title": "$TITLE",
-  "site_brief": "$BRIEF",
-  "site_url": "$URL",
-  "site_icon": "$ICON",
-  "remarks": "$REMARKS",
-  "repository": "${{ github.repository }}"
-}
-EOF
-)
+            # 构建JSON数据
+            JSON_STRING="{\"issue_number\": $ISSUE_NUMBER, \"issue_title\": \"${{ github.event.issue.title }}\", \"issue_state\": \"${{ github.event.issue.state }}\", \"issue_url\": \"${{ github.event.issue.html_url }}\", \"created_at\": \"${{ github.event.issue.created_at }}\", \"updated_at\": \"${{ github.event.issue.updated_at }}\", \"user_login\": \"${{ github.event.issue.user.login }}\", \"user_url\": \"${{ github.event.issue.user.html_url }}\", \"site_title\": \"$TITLE\", \"site_brief\": \"$BRIEF\", \"site_url\": \"$URL\", \"site_icon\": \"$ICON\", \"remarks\": \"$REMARKS\", \"repository\": \"${{ github.repository }}\"}"
+            
+            # 发送到API
+            curl -X POST "$API_URL" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $API_KEY" \
+              -d "$JSON_STRING"
           fi
-          
-          # 发送到API
-          curl -X POST "http://61.150.125.46:3000/issues/friendlink/${{ github.event.action }}" \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $API_KEY" \
-            -d "$JSON_DATA"
