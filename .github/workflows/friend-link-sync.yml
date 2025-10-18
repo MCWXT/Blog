@@ -50,7 +50,7 @@ jobs:
           
           echo "正在发送数据到API..."
           echo "API URL: https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}"
-          echo "API_KEY: ${{ $API_KEY }}"
+          echo "API_KEY: $API_KEY"
           echo "请求数据: $JSON_DATA"
           
           # 发送到API并捕获完整响应
