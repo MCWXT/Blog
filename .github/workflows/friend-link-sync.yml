@@ -7,7 +7,6 @@ on:
 jobs:
   sync_friend_link:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, '友链申请')
     
     steps:
       - name: 处理友链申请
