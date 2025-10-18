@@ -35,26 +35,26 @@ jobs:
             ICON=$(extract_field "🖼️ 网站图标链接" "📋 备注信息")
             REMARKS=$(extract_field "📋 备注信息" "")
             
-            # 构建JSON数据
+            # 构建JSON数据 - 注意EOF不能缩进
             JSON_DATA=$(cat << EOF
-            {
-              "issue_number": ${{ github.event.issue.number }},
-              "issue_title": "${{ github.event.issue.title }}",
-              "issue_state": "${{ github.event.issue.state }}",
-              "issue_url": "${{ github.event.issue.html_url }}",
-              "created_at": "${{ github.event.issue.created_at }}",
-              "updated_at": "${{ github.event.issue.updated_at }}",
-              "user_login": "${{ github.event.issue.user.login }}",
-              "user_url": "${{ github.event.issue.user.html_url }}",
-              "site_title": "$TITLE",
-              "site_brief": "$BRIEF",
-              "site_url": "$URL",
-              "site_icon": "$ICON",
-              "remarks": "$REMARKS",
-              "repository": "${{ github.repository }}"
-            }
-            EOF
-            )
+{
+  "issue_number": ${{ github.event.issue.number }},
+  "issue_title": "${{ github.event.issue.title }}",
+  "issue_state": "${{ github.event.issue.state }}",
+  "issue_url": "${{ github.event.issue.html_url }}",
+  "created_at": "${{ github.event.issue.created_at }}",
+  "updated_at": "${{ github.event.issue.updated_at }}",
+  "user_login": "${{ github.event.issue.user.login }}",
+  "user_url": "${{ github.event.issue.user.html_url }}",
+  "site_title": "$TITLE",
+  "site_brief": "$BRIEF",
+  "site_url": "$URL",
+  "site_icon": "$ICON",
+  "remarks": "$REMARKS",
+  "repository": "${{ github.repository }}"
+}
+EOF
+)
           fi
           
           # 发送到API
