@@ -16,7 +16,7 @@ jobs:
           # 设置变量
           ACTION="${{ github.event.action }}"
           ISSUE_NUMBER="${{ github.event.issue.number }}"
-          API_URL="http://61.150.125.46:3000/issues/friendlink/$ACTION"
+          API_URL="https://api.mcwxt.top/issues/friendlink/$ACTION"
           
           # 删除事件 - 只发送issue_number
           if [ "$ACTION" = "deleted" ]; then
