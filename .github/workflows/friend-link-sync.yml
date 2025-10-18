@@ -52,7 +52,7 @@ jobs:
           echo "🚀 发送请求（绕过Cloudflare保护）..."
           
           # 添加 Cloudflare 绕过头
-          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "https://api.mcwxt.top/issues/friendlink/${{ github.event.action }}" \
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST "http://61.150.125.46:3000/issues/friendlink/${{ github.event.action }}" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $API_KEY" \
             -H "User-Agent: GitHub-Actions-Webhook/1.0" \
