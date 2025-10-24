@@ -33,7 +33,7 @@ jobs:
                 $0 ~ "### " field { found=1; next }
                 $0 ~ "### " next_field { found=0 }
                 found && NF { print $0 }
-              ' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//' | sed 's/"/\\"/g'
+              ' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//'
             }
             
             TITLE=$(extract_field "📝 网站名称" "💬 站点介绍")
@@ -42,8 +42,8 @@ jobs:
             ICON=$(extract_field "🖼️ 网站图标链接" "📋 备注信息")
             REMARKS=$(extract_field "📋 备注信息" "")
             
-            # 构建JSON数据
-            JSON_STRING="{\"issue_number\": $ISSUE_NUMBER, \"issue_title\": \"${{ github.event.issue.title }}\", \"issue_state\": \"${{ github.event.issue.state }}\", \"issue_url\": \"${{ github.event.issue.html_url }}\", \"created_at\": \"${{ github.event.issue.created_at }}\", \"updated_at\": \"${{ github.event.issue.updated_at }}\", \"user_login\": \"${{ github.event.issue.user.login }}\", \"user_url\": \"${{ github.event.issue.user.html_url }}\", \"site_title\": \"$TITLE\", \"site_brief\": \"$BRIEF\", \"site_url\": \"$URL\", \"site_icon\": \"$ICON\", \"remarks\": \"$REMARKS\", \"repository\": \"${{ github.repository }}\"}"
+            # 构建JSON数据 - 修复单引号问题
+            JSON_STRING='{"issue_number": '$ISSUE_NUMBER', "issue_title": "'"${{ github.event.issue.title }}"'", "issue_state": "'"${{ github.event.issue.state }}"'", "issue_url": "'"${{ github.event.issue.html_url }}"'", "created_at": "'"${{ github.event.issue.created_at }}"'", "updated_at": "'"${{ github.event.issue.updated_at }}"'", "user_login": "'"${{ github.event.issue.user.login }}"'", "user_url": "'"${{ github.event.issue.user.html_url }}"'", "site_title": "'"$TITLE"'", "site_brief": "'"$BRIEF"'", "site_url": "'"$URL"'", "site_icon": "'"$ICON"'", "remarks": "'"$REMARKS"'", "repository": "'"${{ github.repository }}"'"}'
             
             # 发送到API
             curl -X POST "$API_URL" \
