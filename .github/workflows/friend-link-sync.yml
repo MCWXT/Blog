@@ -33,7 +33,7 @@ jobs:
                 $0 ~ "### " field { found=1; next }
                 $0 ~ "### " next_field { found=0 }
                 found && NF { print $0 }
-              ' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//'
+              ' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//' | sed "s/'/\\\\'/g"
             }
             
             TITLE=$(extract_field "📝 网站名称" "💬 站点介绍")
