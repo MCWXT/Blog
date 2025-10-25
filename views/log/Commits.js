@@ -30,9 +30,13 @@ export default {
           return;
         }
         router.push({ query: { page: value }});
-        scrollTo(0, 0);
         commits.value = response.data;
       });
+    });
+    watch(route, (value) => {
+      if (value.query.page != page.value) {
+        page.value = value.query.page;
+      }
     });
     page.value = route.query.page || 1;
     
