@@ -94,6 +94,20 @@ const routes = [
   meta: {
     title: '视频'
   }
+}, {
+  path: '/logs/release',
+  name: 'Release',
+  component: importComponent('/views/log/Release'),
+  meta: {
+    title: '版本日志'
+  }
+}, {
+  path: '/logs/commits',
+  name: 'Commits',
+  component: importComponent('/views/log/Commits'),
+  meta: {
+    title: '更新日志'
+  }
 }]
 const router = createRouter({
   history: createWebHistory(),

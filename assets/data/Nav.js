@@ -21,12 +21,15 @@ export default [
     to: '/mc/download'
   }, ]
 }, {
-  name: 'Cloud盘',
-  icon: 'mingcute:cloud-fill',
-  to: {
-    path: '/linkto/cloud',
-    query: {
-      url: '//cloud.mcwxt.top'
-    }
-  }
-}, ]
+  name: '日志',
+  icon: 'icon-park-solid:log',
+  to: '/logs',
+  children: [
+  {
+    name: '版本',
+    to: '/logs/release'
+  }, {
+    name: '更新',
+    to: '/logs/commits'
+  }]
+}]

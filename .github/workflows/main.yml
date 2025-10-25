@@ -39,10 +39,10 @@ jobs:
             
             cat tmp_body.txt
 
-            title=$(awk '/### 网站名称/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
-            brief=$(awk '/### 站点介绍/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
-            url=$(awk '/### 网站链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
-            icon=$(awk '/### 网站图标链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            title=$(awk '/### 📝 网站名称/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            brief=$(awk '/### 💬 站点介绍/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            url=$(awk '/### ️🔗 网站链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
+            icon=$(awk '/### 🖼️ 网站图标链接/{getline; while($0 ~ /^ *$/){getline}; print; exit}' tmp_body.txt)
 
             printf '{\n  "id": %s,\n  "title": "%s",\n  "brief": "%s",\n  "url": "%s",\n  "icon": "%s"\n}\n' \
               "$id" "$title" "$brief" "$url" "$icon" > out/$id.json
