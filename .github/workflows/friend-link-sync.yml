@@ -25,8 +25,8 @@ jobs:
               -H "Authorization: Bearer $API_KEY" \
               -d "{\"issue_number\": $ISSUE_NUMBER}"
           else
-            # 提取表单数据
-            BODY='${{ github.event.issue.body }}'
+            # 使用github context直接访问body，避免shell引用问题
+            BODY="${{ github.event.issue.body }}"
             
             extract_field() {
               echo "$BODY" | awk -v field="$1" -v next_field="$2" '
@@ -42,8 +42,8 @@ jobs:
             ICON=$(extract_field "🖼️ 网站图标链接" "📋 备注信息")
             REMARKS=$(extract_field "📋 备注信息" "")
             
-            # 构建JSON数据 - 使用printf避免引号问题
-            JSON_STRING=$(printf '{"issue_number": %s, "issue_title": "%s", "issue_state": "%s", "issue_url": "%s", "created_at": "%s", "updated_at": "%s", "user_login": "%s", "user_url": "%s", "site_title": "%s", "site_brief": "%s", "site_url": "%s", "site_icon": "%s", "remarks": "%s", "repository": "%s"}' "$ISSUE_NUMBER" "${{ github.event.issue.title }}" "${{ github.event.issue.state }}" "${{ github.event.issue.html_url }}" "${{ github.event.issue.created_at }}" "${{ github.event.issue.updated_at }}" "${{ github.event.issue.user.login }}" "${{ github.event.issue.user.html_url }}" "$TITLE" "$BRIEF" "$URL" "$ICON" "$REMARKS" "${{ github.repository }}")
+            # 构建JSON数据
+            JSON_STRING='{"issue_number": '$ISSUE_NUMBER', "issue_title": "'"${{ github.event.issue.title }}"'", "issue_state": "'"${{ github.event.issue.state }}"'", "issue_url": "'"${{ github.event.issue.html_url }}"'", "created_at": "'"${{ github.event.issue.created_at }}"'", "updated_at": "'"${{ github.event.issue.updated_at }}"'", "user_login": "'"${{ github.event.issue.user.login }}"'", "user_url": "'"${{ github.event.issue.user.html_url }}"'", "site_title": "'"$TITLE"'", "site_brief": "'"$BRIEF"'", "site_url": "'"$URL"'", "site_icon": "'"$ICON"'", "remarks": "'"$REMARKS"'", "repository": "'"${{ github.repository }}"'"}'
             
             # 发送到API
             curl -X POST "$API_URL" \
