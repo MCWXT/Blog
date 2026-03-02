@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { axios, toast } from '../modules/index.js';
 import LinkCard from '../components/LinkCard.vue';
+import BackgroundImg from '../assets/img/background.jpg';
 
 const issuesFriendLink = ref();
 axios
@@ -39,11 +40,11 @@ axios
     <div>
       <div
         class=""
-        style="
+        :style="`
           height: 8rem;
-          background: url('/src/assets/img/background.jpg') 0 -3.5rem no-repeat;
+          background: url('${BackgroundImg}') 0 -3.5rem no-repeat;
           background-size: cover;
-        "></div>
+        `"></div>
       <div class="flex">
         <div>
           <div class="avatar ms-2 relative" style="height: 8rem; top: -0.5rem">
