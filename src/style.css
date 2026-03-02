@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+
+* {
+  font-family: sans-serif !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+.truncate-wrap {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line);
+  -webkit-box-orient: vertical;
+}
+
+.themeIsDark {
+  background: #00000000;
+  color: #ffffff;
+}

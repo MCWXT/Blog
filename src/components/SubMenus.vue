@@ -1,0 +1,30 @@
+<script setup>
+import { Icon } from '@iconify/vue';
+
+defineProps(['parent']);
+</script>
+
+<template>
+  <li>
+    <details v-if="parent.children" open>
+      <summary>
+        <icon v-if="parent.icon" :icon="parent.icon"></icon>{{ parent.name }}
+      </summary>
+      <ul>
+        <sub-menus
+          :parent="item"
+          :label="label"
+          v-for="item in parent.children"></sub-menus>
+      </ul>
+    </details>
+    <router-link
+      :to="parent.to"
+      @click="label.click()"
+      exact-active-class="menu-active"
+      v-else>
+      <icon v-if="parent.icon" :icon="parent.icon"></icon>{{ parent.name }}
+    </router-link>
+  </li>
+</template>
+
+<style scoped></style>

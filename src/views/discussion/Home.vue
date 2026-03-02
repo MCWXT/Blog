@@ -1,0 +1,107 @@
+<script setup>
+import { ref } from 'vue';
+import { cache, toast } from '../../modules/index.js';
+import { octokit, config } from '../../modules/server/github.js';
+
+const discussions = ref();
+octokit
+  .request(`GET /repos/{owner}/{repo}/discussions`, config)
+  .then((response) => {
+    if (response.status !== 200) {
+      toast({
+        type: 'error',
+        content: response.status,
+      });
+    }
+    discussions.value = response.data.reverse();
+  });
+</script>
+<template>
+  <div class="relative border border-base-300 overflow-hidden rounded h-64">
+    <div class="h-full">
+      <video
+        class="h-full object-cover object-center"
+        preload="auto"
+        loop
+        playsinline
+        autoplay
+        muted>
+        <source
+          src="https://storage.mcwxt.top/assets/video/BV1mh411g7Ms_p1.mp4"
+          type="video/mp4" />
+      </video>
+    </div>
+    <h1
+      class="text-6xl absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold mix-blend-difference">
+      Discussions
+    </h1>
+  </div>
+  <div>
+    <div>
+      <div class="m-2 mx-4 flex">
+        <div class="text-xl flex-1">
+          <span v-if="discussions">{{ discussions.length }}</span>
+          <span v-else>0</span>
+        </div>
+        <a
+          class="btn btn-primary btn-sm flex-none end-0"
+          role="button"
+          href="//github.com/MCWXT/mcwxt.github.io/discussions/new/choose"
+          >新讨论</a
+        >
+      </div>
+    </div>
+    <template v-if="discussions">
+      <div class="m-3 divide-y">
+        <router-link
+          class="block transition border-base-300 active:backdrop-brightness-90"
+          v-for="discussion in discussions"
+          :to="'/discussions/' + discussion.number">
+          <div class="p-2">
+            <div class="mb-2">
+              <h2 class="text-2xl">{{ discussion.title }}</h2>
+            </div>
+            <div class="flex items-center">
+              <div class="me-5">
+                <img
+                  class="rounded-full inline me-1 w-10 aspect-square"
+                  :src="discussion.user.avatar_url"
+                  alt="" />
+                <span>{{ discussion.user.login }}</span>
+              </div>
+              <div>
+                <icon
+                  class="me-1 text-base-content/80"
+                  icon="mingcute:comment-fill"></icon>
+                <span>{{ discussion.comments }}</span>
+              </div>
+            </div>
+          </div>
+        </router-link>
+      </div>
+    </template>
+    <div v-else>
+      <div class="m-3 divide-y">
+        <div
+          class="block p-2 transition border-base-300"
+          v-for="(_, index) in Array(2)"
+          :key="index">
+          <div class="mb-2">
+            <div class="skeleton h-7 w-3/4 mb-1"></div>
+            <div class="skeleton h-5 w-1/2"></div>
+          </div>
+          <div class="flex items-center">
+            <div class="me-5 flex items-center">
+              <div class="skeleton rounded-full me-2 w-10 h-10"></div>
+              <div class="skeleton h-5 w-20"></div>
+            </div>
+            <div class="flex items-center">
+              <div class="skeleton me-1 w-5 h-5"></div>
+              <div class="skeleton h-5 w-8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
