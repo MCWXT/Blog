@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/video',
     name: 'Videos',
-    component: import('./views/video/Home.vue'),
+    component: () => import('./views/video/Home.vue'),
     meta: {
       title: '视频',
     },
@@ -39,7 +39,7 @@ const routes = [
   {
     path: '/video/:bvid',
     name: 'Video',
-    component: import('./views/video/Player.vue'),
+    component: () => import('./views/video/Player.vue'),
     meta: {
       title: '视频',
     },
@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/discussions',
     name: 'Discussions',
-    component: import('./views/discussion/Home.vue'),
+    component: () => import('./views/discussion/Home.vue'),
     meta: {
       title: '讨论',
     },
@@ -55,7 +55,7 @@ const routes = [
   {
     path: '/discussions/:number',
     name: 'Discussion',
-    component: import('./views/discussion/Discussion.vue'),
+    component: () => import('./views/discussion/Discussion.vue'),
     meta: {
       title: '讨论',
     },
@@ -63,7 +63,7 @@ const routes = [
   {
     path: '/mc/download',
     name: 'DownloadMinecraft',
-    component: import('./views/mc/Download.vue'),
+    component: () => import('./views/mc/Download.vue'),
     meta: {
       title: '我的世界基岩版下载',
     },
@@ -71,7 +71,7 @@ const routes = [
   {
     path: '/logs/release',
     name: 'Release',
-    component: import('./views/log/Release.vue'),
+    component: () => import('./views/log/Release.vue'),
     meta: {
       title: '版本日志',
     },
@@ -79,7 +79,7 @@ const routes = [
   {
     path: '/logs/commits',
     name: 'Commits',
-    component: import('./views/log/Commits.vue'),
+    component: () => import('./views/log/Commits.vue'),
     meta: {
       title: '更新日志',
     },
@@ -87,7 +87,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: import('./views/login/Login.vue'),
+    component: () => import('./views/login/Login.vue'),
     meta: {
       title: '登录',
     },
@@ -95,7 +95,7 @@ const routes = [
   {
     path: '/login/oauth',
     name: 'Oauth',
-    component: import('./views/login/Oauth.vue'),
+    component: () => import('./views/login/Oauth.vue'),
     beforeEnter: (to) =>
       (to.query.state == 'MCWXT' && to.query.code && true) || {
         path: '/error/400',
