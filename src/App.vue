@@ -66,7 +66,7 @@ tokenExpired();
 </script>
 
 <template>
-  <div class="drawer lg:drawer-open">
+  <div class="drawer md:drawer-open">
     <input id="my-drawer" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content">
       <header class="h-16">

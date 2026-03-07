@@ -28,9 +28,9 @@ axios
       </router-link>
     </div>
     <template v-if="videos">
-      <div class="flex flex-wrap justify-evenly items-stretch w-full">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-items-center px-2">
         <router-link
-          class="w-44 my-2 hover:bg-zinc-200"
+          class="w-44 my-2 hover:bg-zinc-200 group cursor-pointer flex flex-col gap-2"
           v-for="item in videos"
           :to="'/video/' + item.bvid">
           <div class="aspect-4/3 relative rounded-lg overflow-hidden">

@@ -28,11 +28,11 @@ axios
       <h2 class="text-lg">{{ video.title }}</h2>
       <div class="flex text-sm text-gray-600 m-2">
         <span class="mr-4"
-          ><icon icon="mingcute:play-circle-fill"></icon>
+          ><icon class="inline" icon="mingcute:play-circle-fill"></icon>
           {{ formatter.format(video.stat.view) }}</span
         >
         <span class="mr-4"
-          ><icon icon="mingcute:danmaku-fill"></icon>
+          ><icon class="inline" icon="mingcute:danmaku-fill"></icon>
           {{ formatter.format(video.stat.danmaku) }}</span
         >
         <span class="mr-4">{{ formatTimestamp(video.pubdate) }}</span>

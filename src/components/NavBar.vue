@@ -39,12 +39,12 @@ window.addEventListener('scroll', () => {
       <div class="dropdown dropdown-end">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="w-10 rounded-full">
-            <img src="../assets/img/logo.png" alt="" />
+            <img src="/img/logo.png" alt="" />
           </div>
         </div>
         <ul
           tabindex="-1"
-          class="menu menu-sm dropdown-content overflow-y-auto max-h-96 bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          class="menu menu-sm dropdown-content overflow-y-auto max-h-96 rounded-box z-1 mt-6 w-52 p-2 bg-base-100 border border-base-300">
           <li><router-link to="/">主页</router-link></li>
           <li>
             <router-link to="/login"

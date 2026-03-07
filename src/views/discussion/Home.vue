@@ -17,7 +17,7 @@ octokit
   });
 </script>
 <template>
-  <div class="relative border border-base-300 overflow-hidden rounded h-64">
+  <div class="relative border border-base-300 overflow-hidden rounded aspect-16/9 w-full">
     <div class="h-full">
       <video
         class="h-full object-cover object-center"
@@ -32,7 +32,7 @@ octokit
       </video>
     </div>
     <h1
-      class="text-6xl absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold mix-blend-difference">
+      class="text-6xl md:text-8xl absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold mix-blend-difference">
       Discussions
     </h1>
   </div>
@@ -52,7 +52,7 @@ octokit
       </div>
     </div>
     <template v-if="discussions">
-      <div class="m-3 divide-y">
+      <div class="m-3 divide-y md:mx-32">
         <router-link
           class="block transition border-base-300 active:backdrop-brightness-90"
           v-for="discussion in discussions"

@@ -43,7 +43,7 @@ const refresh = () => {
   <div class="m-2">
     <h1 class="text-2xl text-center">MC基岩版全版本下载</h1>
     <div class="w-74 my-3 mx-auto">
-      <img src="../../assets/img/remcbbsBT.png" alt="" />
+      <img src="/img/remcbbsBT.png" alt="" />
     </div>
     <div class="alert alert-vertical w-72 my-4 mx-auto">
       <span>
