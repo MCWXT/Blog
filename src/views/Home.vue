@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { axios, toast } from '../modules/index.js';
 import LinkCard from '../components/LinkCard.vue';
+import GradientText from '../components/GradientText/GradientText.vue';
 
 const issuesFriendLink = ref();
 axios
@@ -37,14 +38,22 @@ axios
 <template>
   <div>
     <div>
-      <div class="bg-[url(/img/background.jpg)] bg-cover bg-no-repeat bg-center aspect-20/7"></div>
+      <div
+        class="bg-[url(/img/background.jpg)] bg-cover bg-no-repeat bg-center aspect-20/7"></div>
       <div class="flex">
         <div>
           <div class="avatar ms-2 relative" style="height: 8rem; top: -0.5rem">
             <img class="rounded-full" src="/img/logo.png" alt="" />
           </div>
           <div class="text-center ms-2" style="width: 8rem">
-            <span class="text-4xl">MCWXT</span>
+            <GradientText
+              :colors="['#000000', '#444444', '#858585']"
+              :animation-speed="3"
+              :show-border="false"
+              class-name="your-custom-class"
+              class="text-4xl rounded-none w-36">
+              MCWXT
+            </GradientText>
           </div>
         </div>
         <div class="p-2">

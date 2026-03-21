@@ -6,7 +6,10 @@ import { Icon } from '@iconify/vue';
 
 const videos = ref();
 const carousel = [
-  { image: 'https://www.dmoe.cc/random.php' },
+  {
+    image: 'https://www.dmoe.cc/random.php',
+    href: 'https://www.dmoe.cc/random.php',
+  },
   {
     image: 'https://storage.mcwxt.top/assets/img/IMG_20250725_004145.jpg',
     href: 'https://github.com/mcwxt/Blog',
@@ -19,7 +22,7 @@ axios
 </script>
 <template>
   <div>
-    <div class="carousel rounded-xs w-full aspect-16/9 mb-2">
+    <div class="carousel rounded-md m-2 aspect-16/9">
       <router-link
         class="carousel-item w-full"
         v-for="item in carousel"
@@ -28,9 +31,10 @@ axios
       </router-link>
     </div>
     <template v-if="videos">
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-items-center px-2">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-items-center px-2">
         <router-link
-          class="w-44 my-2 hover:bg-zinc-200 group cursor-pointer flex flex-col gap-2"
+          class="w-44 my-2 hover:bg-zinc-200 group cursor-pointer flex flex-col gap-2 transition active:scale-110"
           v-for="item in videos"
           :to="'/video/' + item.bvid">
           <div class="aspect-4/3 relative rounded-lg overflow-hidden">

@@ -55,7 +55,7 @@ const labelRef = useTemplateRef('label');
       aria-label="close sidebar"
       class="drawer-overlay"
       ref="label"></label>
-    <div class="bg-base-100 h-full w-72">
+    <div class="backdrop-blur-sm bg-[var(--color-base-100)]/[90%] h-full w-72 rounded">
       <div>
         <div class="py-4 border-b border-base-300 mx-5 text-center">
           <span class="text-xl">MCWXT的个人博客</span>

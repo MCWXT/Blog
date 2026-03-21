@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { cache, toast } from '../../modules/index.js';
 import { octokit, config } from '../../modules/server/github.js';
+import Aurora from '../../components/Aurora/Aurora.vue';
+import FallingText from '../../components/FallingText/FallingText.vue';
 
 const discussions = ref();
 octokit
@@ -17,22 +19,27 @@ octokit
   });
 </script>
 <template>
-  <div class="relative border border-base-300 overflow-hidden rounded aspect-16/9 w-full">
+  <div
+    class="relative border border-base-300 overflow-hidden rounded aspect-16/9 w-full">
     <div class="h-full">
-      <video
-        class="h-full object-cover object-center"
-        preload="auto"
-        loop
-        playsinline
-        autoplay
-        muted>
-        <source
-          src="https://storage.mcwxt.top/assets/video/BV1mh411g7Ms_p1.mp4"
-          type="video/mp4" />
-      </video>
+      <Aurora
+        :color-stops="['#FFF0F5', '#E6E6FA', '#FFF0F5']"
+        :amplitude="1.0"
+        :blend="0.5"
+        :speed="1.0"
+        :intensity="1.0"
+        class="w-full h-full relative overflow-hidden" />
+      <FallingText
+        text="Welcome to the Discussion area of the best BLOG in the world."
+        :highlight-words="['Discussion', 'BLOG']"
+        trigger="auto"
+        :gravity="1"
+        font-size="2rem"
+        class="text-neutral-600"
+        :mouse-constraint-stiffness="0.2" />
     </div>
     <h1
-      class="text-6xl md:text-8xl absolute top-1/2 -translate-y-1/2 mx-1 text-base-100 font-bold mix-blend-difference">
+      class="text-6xl md:text-8xl absolute top-1/2 -translate-y-1/2 mx-1 text-base-200 font-bold">
       Discussions
     </h1>
   </div>

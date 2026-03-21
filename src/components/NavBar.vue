@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
         </div>
         <ul
           tabindex="-1"
-          class="menu menu-sm dropdown-content overflow-y-auto max-h-96 rounded-box z-1 mt-6 w-52 p-2 bg-base-100 border border-base-300">
+          class="menu menu-sm dropdown-content overflow-y-auto max-h-96 rounded-box z-1 mt-6 w-52 p-2 bg-base-200 border border-base-300">
           <li><router-link to="/">主页</router-link></li>
           <li>
             <router-link to="/login"
