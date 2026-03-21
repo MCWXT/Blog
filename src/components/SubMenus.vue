@@ -1,7 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 
-defineProps(['parent']);
+defineProps(['parent', 'label']);
 </script>
 
 <template>

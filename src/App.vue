@@ -118,7 +118,7 @@ tokenExpired();
         <nav>
           <h6 class="footer-title">感谢</h6>
           <ul>
-            <li><a href="https://taojs.mcwxt.top">TaoJs</a></li>
+            <li><a href="https://vite.dev">Vite</a></li>
             <li><a href="https://www.w3.org">W3C</a></li>
             <li><a href="https://www.mozilla.org">Mozilla</a></li>
           </ul>

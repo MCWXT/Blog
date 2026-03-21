@@ -42,7 +42,10 @@ const nav = [
     ],
   },
 ];
+import { onMounted, useTemplateRef } from 'vue';
 import SubMenus from './SubMenus.vue';
+
+const labelRef = useTemplateRef('label');
 </script>
 
 <template>
@@ -63,7 +66,7 @@ import SubMenus from './SubMenus.vue';
           <sub-menus
             class=""
             :parent="item"
-            :label="label"
+            :label="labelRef"
             v-for="item in nav"></sub-menus>
         </ul>
       </div>
