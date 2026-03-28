@@ -16,7 +16,7 @@ const carousel = [
   },
 ];
 axios
-  .get('/video')
+  .get('/video/archive/related')
   .then((response) => (videos.value = JSON.parse(response.data).data))
   .catch((error) => alert(error));
 </script>
