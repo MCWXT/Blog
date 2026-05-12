@@ -4,8 +4,9 @@ import 'https://esm.sh/giscus';
 import { ref } from 'vue';
 import { cache, toast } from '../../modules/index.js';
 import { octokit, config } from '../../modules/server/github.js';
+import { useThemeStore } from '../../stores/theme.js';
 
-const themeIsDark = ref(localStorage.getItem('themeIsDark') === 'true');
+const theme = useThemeStore();
 const route = useRoute();
 const router = useRouter();
 const number = route.params.number;
@@ -15,7 +16,6 @@ octokit
   .request(`GET /repos/{owner}/{repo}/discussions/${number}`, config)
   .then((response) => {
     if (response.status !== 200) {
-      //com.termux.documents/tree/%2Fdata%2Fdata%2Fcom.termux%2Ffiles%2Fhome%2Fproject%2FBlog::/data/data/com.termux/files/home/project/Blog/src/views/discussion/Discussion.vue
       content: toast({
         type: 'error',
         content: response.status,
@@ -51,9 +51,7 @@ octokit
         </div>
         <div class="p-2">
           <div
-            class="mx-2 prose"
-            :class="{ themeIsDark: themeIsDark }"
-            v-html="discussion.body"></div>
+            class="mx-2 prose" v-html="discussion.body"></div>
         </div>
       </div>
     </div>
@@ -91,7 +89,7 @@ octokit
         reactionsenabled="1"
         emitmetadata="0"
         inputposition="top"
-        theme=""
+        :theme="theme.current"
         lang="zh-CN"
         loading="lazy"
         crossorigin="anonymous"></giscus-widget>

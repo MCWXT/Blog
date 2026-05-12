@@ -2,9 +2,15 @@
 import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import { Icon } from '@iconify/vue';
-import { tokenExpired } from './modules/index.js';
+import { tokenExpired, toast } from './modules/index.js';
+import { useThemeStore } from './stores/theme.js';
+import { useAuthStore } from './stores/auth.js';
 import NavBar from './components/NavBar.vue';
 import DrawerSide from './components/DrawerSide.vue';
+
+const auth = useAuthStore();
+const theme = useThemeStore();
+document.documentElement.setAttribute('data-theme', theme.current);
 
 const include = ['Home', 'Discussions', 'McDownload'];
 
@@ -47,7 +53,7 @@ const link = [
   },
 ];
 
-const toast = ref([]);
+const toasts = ref([]);
 document.addEventListener('toast', (e) => {
   e.detail.data.icon = {
     info: 'mingcute:information-line',
@@ -55,14 +61,23 @@ document.addEventListener('toast', (e) => {
     warning: 'mingcute:warning-line',
     error: 'mingcute:close-circle-line',
   }[e.detail.data.type];
-  toast.value.push(e.detail.data);
+  toasts.value.push(e.detail.data);
   setTimeout(() => {
-    toast.value = toast.value.filter(
+    toasts.value = toasts.value.filter(
       (item) => item.content !== e.detail.data.content,
     );
   }, 1500);
 });
-tokenExpired();
+
+auth.isLogin && tokenExpired(auth.token).then((isExpired) => {
+  if (!isExpired) {
+    auth.logout();
+    toast({
+      type: 'error',
+      content: '登录过期，请重新登录',
+    });
+  }
+});
 </script>
 
 <template>
@@ -76,7 +91,7 @@ tokenExpired();
             role="alert"
             class="alert"
             :class="`alert-${item.type}`"
-            v-for="item in toast">
+            v-for="item in toasts">
             <icon class="text-xl" :icon="item.icon"></icon>
             <span>{{ item.content }}</span>
           </div>

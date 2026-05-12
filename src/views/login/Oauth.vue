@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { cache, toast } from '../../modules/index.js';
+import { toast } from '../../modules/index.js';
 import { Axios } from 'axios';
+import { useAuthStore } from '../../stores/auth.js';
 
+const auth = useAuthStore();
 const route = useRoute();
 const router = useRouter();
 const axios = new Axios({});
@@ -26,7 +28,7 @@ axios
       });
       return;
     }
-    cache.setItem('access_token', data.access_token);
+    auth.login(data.access_token);
     toast({
       type: 'success',
       content: '登录成功',

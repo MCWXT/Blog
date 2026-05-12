@@ -1,10 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 
-* {
-  font-family: sans-serif !important;
-}
-
 img {
   max-width: 100%;
 }

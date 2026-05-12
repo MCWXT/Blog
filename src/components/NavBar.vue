@@ -2,12 +2,11 @@
 import { Icon } from '@iconify/vue';
 import { cache } from '../modules/index.js';
 import { ref, watch } from 'vue';
+import { useThemeStore } from '../stores/theme.js';
+import { useAuthStore } from '../stores/auth.js';
 
-const isLogin = Boolean(cache.getItem('access_token'));
-const themeIsDark = ref(localStorage.getItem('themeIsDark') || false);
-watch(themeIsDark, (themeIsDark) => {
-  localStorage.setItem('themeIsDark', themeIsDark);
-});
+const auth = useAuthStore();
+const theme = useThemeStore();
 const navbarIsOpacity = ref(true);
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
@@ -48,20 +47,13 @@ window.addEventListener('scroll', () => {
           <li><router-link to="/">主页</router-link></li>
           <li>
             <router-link to="/login"
-              >登录<span class="badge badge-xs" v-if="isLogin"
+              >登录<span class="badge badge-xs" v-if="auth.isLogin"
                 >已登录</span
               ></router-link
             >
           </li>
-          <li>
-            <label class="swap swap-rotate justify-start">
-              <input
-                type="checkbox"
-                class="theme-controller"
-                value="dark"
-                v-model="themeIsDark" />
-              <span>{{ themeIsDark ? '黑夜' : '白天' }}</span>
-            </label>
+          <li @click="theme.toggleTheme()">
+            <span>{{ theme.isDark() ? '黑夜' : '白天' }}</span>
           </li>
         </ul>
       </div>
