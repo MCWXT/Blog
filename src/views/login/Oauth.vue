@@ -9,11 +9,20 @@ const auth = useAuthStore();
 const route = useRoute();
 const router = useRouter();
 const axios = new Axios({});
-let logged = false;
+
 axios
   .post('https://api.mcwxt.top/login/github/oauth?code=' + route.query.code)
-  .then((response) => JSON.parse(response.data))
-  .finally((data) => {
+  .then((response) => {
+    if (!response.data) {
+      throw new Error('请求错误');
+    }
+    const data =
+      typeof response.data === 'string'
+        ? JSON.parse(response.data)
+        : response.data;
+    return JSON.parse(data);
+  })
+  .then((data) => {
     if (!data) {
       toast({
         type: 'error',
@@ -33,9 +42,16 @@ axios
       type: 'success',
       content: '登录成功',
     });
+  })
+  .catch(() => {
+    toast({
+      type: 'error',
+      content: '请求错误',
+    });
+  })
+  .finally(() => {
+    router.push('/login');
   });
-router.replace({ query: {} });
-router.push('/login');
 </script>
 <template>
   <div>

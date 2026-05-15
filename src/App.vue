@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import { Icon } from '@iconify/vue';
-import { tokenExpired, toast } from './modules/index.js';
+import { validateToken, toast } from './modules/index.js';
 import { useThemeStore } from './stores/theme.js';
 import { useAuthStore } from './stores/auth.js';
 import NavBar from './components/NavBar.vue';
@@ -12,7 +12,7 @@ const auth = useAuthStore();
 const theme = useThemeStore();
 document.documentElement.setAttribute('data-theme', theme.current);
 
-const include = ['Home', 'Discussions', 'McDownload'];
+const include = ['Home', 'Discussions', 'DownloadMinecraft'];
 
 const link = [
   {
@@ -69,15 +69,17 @@ document.addEventListener('toast', (e) => {
   }, 1500);
 });
 
-auth.isLogin && tokenExpired(auth.token).then((isExpired) => {
-  if (!isExpired) {
-    auth.logout();
-    toast({
-      type: 'error',
-      content: '登录过期，请重新登录',
-    });
-  }
-});
+if (auth.isLogin) {
+  validateToken().then((valid) => {
+    if (!valid) {
+      auth.logout();
+      toast({
+        type: 'error',
+        content: '登录过期，请重新登录',
+      });
+    }
+  });
+}
 </script>
 
 <template>

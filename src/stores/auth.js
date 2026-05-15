@@ -12,9 +12,11 @@ export const useAuthStore = defineStore('auth', {
   },
   actions: {
     login(token) {
+      this.token = token;
       localStorage.setItem('access_token', token);
     },
     logout() {
+      this.token = null;
       localStorage.removeItem('access_token');
     },
   },

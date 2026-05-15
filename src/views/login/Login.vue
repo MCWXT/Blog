@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import { cache } from '../../modules/index.js';
 import { Icon } from '@iconify/vue';
+import { useAuthStore } from '../../stores/auth.js';
 
-const logged = Boolean(cache.getItem('access_token'));
+const auth = useAuthStore();
 </script>
 <template>
   <div class="mx-3 my-16">
@@ -18,10 +18,10 @@ const logged = Boolean(cache.getItem('access_token'));
       <div class="text-center">
         <a
           class="btn btn-wide btn-primary text-lg"
-          :class="{ 'btn-disabled': logged }"
+          :class="{ 'btn-disabled': auth.isLogin }"
           role="button"
           href="https://github.com/login/oauth/authorize?client_id=Iv23lieAt4NOqGN5GqZI&state=MCWXT">
-          <span v-if="logged">您已登录</span>
+          <span v-if="auth.isLogin">您已登录</span>
           <span v-else>点击授权</span>
         </a>
       </div>

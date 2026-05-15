@@ -7,13 +7,13 @@ import { useAuthStore } from '../stores/auth.js';
 
 const auth = useAuthStore();
 const theme = useThemeStore();
-const navbarIsOpacity = ref(true);
+const isScrolled = ref(true);
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
   if (window.scrollY > 100) {
-    navbarIsOpacity.value = true;
+    isScrolled.value = true;
   } else {
-    navbarIsOpacity.value = false;
+    isScrolled.value = false;
   }
 });
 </script>
@@ -22,8 +22,8 @@ window.addEventListener('scroll', () => {
   <div
     class="navbar transition duration-500 border-b border-base-300 backdrop-blur-sm"
     :class="{
-      'bg-[var(--color-base-100)]/[95%]': navbarIsOpacity,
-      'bg-base-100': !navbarIsOpacity,
+      'bg-[var(--color-base-100)]/[95%]': isScrolled,
+      'bg-base-100': !isScrolled,
     }">
     <div class="flex-1">
       <label

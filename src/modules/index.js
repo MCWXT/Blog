@@ -87,11 +87,10 @@ const formatTimestamp = (timestamp) => {
   return `${year}年${month}月`;
 };
 
-const tokenExpired = (token) => {
-  if (!token) {
-    return;
-  }
-  return octokit.request('GET /user').catch((response) => false);
+const validateToken = () => {
+  return octokit.request('GET /user')
+    .then(() => true)
+    .catch(() => false);
 };
 
 export {
@@ -102,5 +101,5 @@ export {
   formatter,
   formatTimestamp,
   formatTime,
-  tokenExpired,
+  validateToken,
 };

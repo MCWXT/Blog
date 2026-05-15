@@ -98,7 +98,7 @@ const routes = [
     component: () => import('./views/login/Oauth.vue'),
     beforeEnter: (to) =>
       (to.query.state == 'MCWXT' && to.query.code && true) || {
-        path: '/error/400',
+        path: '/login',
       },
     meta: {
       title: '授权',
