@@ -15,12 +15,6 @@ let _discussion;
 octokit
   .request(`GET /repos/{owner}/{repo}/discussions/${number}`, config)
   .then((response) => {
-    if (response.status !== 200) {
-      content: toast({
-        type: 'error',
-        content: response.status,
-      });
-    }
     _discussion = response.data;
     octokit
       .request('POST /markdown', {
@@ -30,6 +24,12 @@ octokit
         _discussion.body = response.data;
         discussion.value = _discussion;
       });
+  }).catch((error) => {
+    toast({
+        type: 'error',
+        content: error.message,
+      });
+    router.replace('/discussions');
   });
 </script>
 <template>

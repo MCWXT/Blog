@@ -42,7 +42,7 @@ axios
   });
 </script>
 <template>
-  <div>
-    <span>...</span>
+  <div class="text-center my-5">
+    <span class="loading loading-dots loading-md"></span>
   </div>
 </template>
