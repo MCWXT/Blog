@@ -20,37 +20,25 @@ axios
       typeof response.data === 'string'
         ? JSON.parse(response.data)
         : response.data;
-    return JSON.parse(data);
+    return data;
   })
   .then((data) => {
-    if (!data) {
-      toast({
-        type: 'error',
-        content: '请求错误',
-      });
-      return;
-    }
     if (data && data.error) {
-      toast({
-        type: 'error',
-        content: data.error,
-      });
-      return;
+      throw new Error(data.error || 'GitHub 登录失败');
     }
     auth.login(data.access_token);
     toast({
       type: 'success',
       content: '登录成功',
     });
+    router.replace('/');
   })
-  .catch(() => {
+  .catch((error) => {
     toast({
       type: 'error',
-      content: '请求错误',
+      content: error.message,
     });
-  })
-  .finally(() => {
-    router.push('/login');
+    router.replace('/login');
   });
 </script>
 <template>
