@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from 'vue';
-import { formatter, formatTimestamp, formatTime } from '../../modules/index.js';
+import {
+  formatter,
+  formatTimestamp,
+  formatTime,
+  toast,
+} from '../../modules/index.js';
 import { axios } from '../../modules/server/bilibili.js';
 import { Icon } from '@iconify/vue';
 
@@ -18,7 +23,12 @@ const carousel = [
 axios
   .get('/video/archive/related')
   .then((response) => (videos.value = JSON.parse(response.data).data))
-  .catch((error) => alert(error));
+  .catch((error) => {
+    toast({
+      type: 'error',
+      content: error.message,
+    });
+  });
 </script>
 <template>
   <div>
@@ -34,7 +44,7 @@ axios
       <div
         class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 justify-items-center px-2">
         <router-link
-          class="w-44 my-2 hover:bg-zinc-200 group cursor-pointer flex flex-col gap-2 transition active:scale-110"
+          class="w-44 my-2 hover:bg-zinc-200 group cursor-pointer flex flex-col gap-2 transition active:scale-105"
           v-for="item in videos"
           :to="'/video/' + item.bvid">
           <div class="aspect-4/3 relative rounded-lg overflow-hidden">

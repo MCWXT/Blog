@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { axios, toast } from '../modules/index.js';
+import { useThemeStore } from '../stores/theme.js';
 import LinkCard from '../components/LinkCard.vue';
 import GradientText from '../components/GradientText/GradientText.vue';
 
+const theme = useThemeStore();
 const issuesFriendLink = ref();
 axios
   .get('https://api.mcwxt.top/issues/friendlink')
@@ -47,7 +49,11 @@ axios
           </div>
           <div class="text-center ms-2" style="width: 8rem">
             <GradientText
-              :colors="['#000000', '#444444', '#858585']"
+              :colors="
+                theme.isDark()
+                  ? ['#ffffff', '#ededed', '#cfcfcf']
+                  : ['#000000', '#1a1a1a', '#858585']
+              "
               :animation-speed="3"
               :show-border="false"
               class-name="your-custom-class"
