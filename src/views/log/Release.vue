@@ -42,14 +42,15 @@ octokit
           <span>{{ item.tag_name }}</span>
         </div>
       </div>
-      <div class="collapse collapse-plus bg-base-100 border border-base-300">
-        <input type="radio" name="my-accordion-3" />
-        <div class="collapse-title font-semibold overflow-x-auto">
+      <details
+        class="collapse collapse-plus bg-base-100 border border-base-300"
+        name="my-accordion-det-1">
+        <summary class="collapse-title font-semibold">
           <h3>{{ item.name }}</h3>
-          <div
-            class="text-md prose"
-            v-html="marked.parse(item.body)"></div>
-        </div>
+          <div class="w-full h-fit overflow-x-auto overflow-y-hidden">
+            <div class="text-md prose" v-html="marked.parse(item.body)"></div>
+          </div>
+        </summary>
         <div class="collapse-content text-sm">
           <ul class="list rounded-box border border-base-300">
             <li class="list-row">
@@ -62,7 +63,7 @@ octokit
             </li>
           </ul>
         </div>
-      </div>
+      </details>
     </div>
   </div>
 </template>

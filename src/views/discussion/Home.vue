@@ -10,7 +10,6 @@ axios
   .get('/video/news')
   .then((response) => {
     const data = JSON.parse(response.data).data.archives;
-    console.log(data);
     carousel.value = [];
     for (let item of data) {
       carousel.value.push(item);

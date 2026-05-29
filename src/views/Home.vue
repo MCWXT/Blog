@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import { axios, toast } from '../modules/index.js';
+import { axios, toast, easterEgg } from '../modules/index.js';
 import { useThemeStore } from '../stores/theme.js';
 import LinkCard from '../components/LinkCard.vue';
 import GradientText from '../components/GradientText/GradientText.vue';
+
 
 const theme = useThemeStore();
 const issuesFriendLink = ref();
@@ -45,7 +46,7 @@ axios
       <div class="flex">
         <div>
           <div class="avatar ms-2 relative" style="height: 8rem; top: -0.5rem">
-            <img class="rounded-full" src="/img/logo.png" alt="" />
+            <img class="rounded-full" @click="easterEgg.click()" src="/img/logo.png" alt="" />
           </div>
           <div class="text-center ms-2" style="width: 8rem">
             <GradientText

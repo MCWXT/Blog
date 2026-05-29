@@ -5,30 +5,27 @@ import { ref } from 'vue';
 import { cache, toast } from '../../modules/index.js';
 import { octokit, config } from '../../modules/server/github.js';
 import { useThemeStore } from '../../stores/theme.js';
+import { marked } from 'marked';
 
 const theme = useThemeStore();
 const route = useRoute();
 const router = useRouter();
 const number = route.params.number;
 const discussion = ref();
-let _discussion;
 octokit
   .request(`GET /repos/{owner}/{repo}/discussions/${number}`, config)
   .then((response) => {
-    _discussion = response.data;
-    octokit
-      .request('POST /markdown', {
-        text: _discussion.body,
-      })
-      .then((response) => {
-        _discussion.body = response.data;
-        discussion.value = _discussion;
-      });
-  }).catch((error) => {
+    const contents = response.data;
+    contents.body = marked.parse(
+      contents.body.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, ''),
+    );
+    discussion.value = contents;
+  })
+  .catch((error) => {
     toast({
-        type: 'error',
-        content: error.message,
-      });
+      type: 'error',
+      content: error.message,
+    });
     router.replace('/discussions');
   });
 </script>
@@ -50,8 +47,7 @@ octokit
           <span>{{ discussion.user.login }}</span>
         </div>
         <div class="p-2">
-          <div
-            class="mx-2 prose" v-html="discussion.body"></div>
+          <div class="mx-2 prose" v-html="discussion.body"></div>
         </div>
       </div>
     </div>
