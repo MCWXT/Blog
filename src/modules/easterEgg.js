@@ -1,4 +1,6 @@
 let number = 0;
+const audio = new Audio('/public/audio/Awakening.mp3');
+
 const easterEgg = {
   click: () => {
     number++;
@@ -9,7 +11,6 @@ const easterEgg = {
   },
   trigger: () => {
     alert('Hellow strEnger Im .............');
-    const audio = new Audio('/public/audio/Awakening.mp3');
     setTimeout(() => audio.play(), 250);
     const html = document.documentElement;
     const style = document.createElement('style');
