@@ -1,5 +1,5 @@
 let number = 0;
-const audio = new Audio('/public/audio/Awakening.mp3');
+const audio = new Audio('/audio/Awakening.mp3');
 
 const easterEgg = {
   click: () => {
