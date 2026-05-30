@@ -2,15 +2,16 @@ let number = 0;
 const audio = new Audio('/audio/Awakening.mp3');
 
 const easterEgg = {
-  click: () => {
+  click: (fun) => {
     number++;
     setTimeout(() => number--, 1000);
-    if (number >= 6) {
-      easterEgg.trigger();
+    if (number >= 2) {
+      easterEgg.trigger(fun);
     }
   },
-  trigger: () => {
+  trigger: (fun) => {
     alert('Hellow strEnger Im .............');
+    fun();
     setTimeout(() => audio.play(), 250);
     const html = document.documentElement;
     const style = document.createElement('style');

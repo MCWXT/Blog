@@ -46,7 +46,7 @@ axios
       <div class="flex">
         <div>
           <div class="avatar ms-2 relative" style="height: 8rem; top: -0.5rem">
-            <img class="rounded-full" @click="easterEgg.click()" src="/img/logo.png" alt="" />
+            <img class="rounded-full" @click="easterEgg.click(() => theme.toggleTheme())" src="/img/logo.png" alt="" />
           </div>
           <div class="text-center ms-2" style="width: 8rem">
             <GradientText
