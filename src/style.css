@@ -34,6 +34,7 @@
   --depth: 1;
   --noise: 0;
 }
+@plugin "@tailwindcss/typography";
 
 img {
   max-width: 100%;

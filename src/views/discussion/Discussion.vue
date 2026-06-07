@@ -35,19 +35,27 @@ octokit
       <h1 class="mt-3 text-2xl">
         {{ discussion.title }} <span>#{{ number }}</span>
       </h1>
-      <span class="my-2"><span>更新于: </span>{{ discussion.updated_at }}</span>
+      <div class="mb-3">
+        <div class="badge badge-sm badge-outline badge-primary" v-for="item in discussion.labels">{{ item.name }}</div>
+      </div>
+      <span><span>更新于: </span>{{ discussion.updated_at }}</span>
+      <br />
+      <span>{{ discussion.category.description }}</span>
     </div>
     <div class="p-2">
       <div class="border border-base-300 rounded">
-        <div class="my-2">
+        <div class="my-2 flex justify-between items-center px-2">
           <img
-            class="rounded-lg mx-2 h-10 inline"
+            class="rounded-lg me-2 h-10 inline flex-none"
             :src="discussion.user.avatar_url"
             alt="" />
-          <span>{{ discussion.user.login }}</span>
+          <span class="flex-1">{{ discussion.user.login }}</span>
+          <span class="flex-none">{{ discussion.category.name }}</span>
         </div>
         <div class="p-2">
-          <div class="mx-2 prose" v-html="discussion.body"></div>
+          <article
+            class="mx-2 prose lg:prose-xl break-words"
+            v-html="discussion.body"></article>
         </div>
       </div>
     </div>
