@@ -36,7 +36,7 @@ octokit
         {{ discussion.title }} <span>#{{ number }}</span>
       </h1>
       <div class="mb-3">
-        <div class="badge badge-sm badge-outline" :class="`border-[#${item.color}] text-[#${item.color}]`" v-for="item in discussion.labels">{{ item.name }}</div>
+        <div :class="`badge badge-sm badge-outline border-[#${item.color}] text-[#${item.color}]`" v-for="item in discussion.labels">{{ item.name }}</div>
       </div>
       <span><span>更新于: </span>{{ discussion.updated_at }}</span>
       <br />
