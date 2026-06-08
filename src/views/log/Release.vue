@@ -47,8 +47,8 @@ octokit
         name="my-accordion-det-1">
         <summary class="collapse-title font-semibold">
           <h3>{{ item.name }}</h3>
-          <div class="w-full h-fit overflow-x-auto overflow-y-hidden">
-            <div class="text-md prose" v-html="marked.parse(item.body)"></div>
+          <div class="w-full h-fit">
+            <div class="prose break-words" v-html="marked.parse(item.body)"></div>
           </div>
         </summary>
         <div class="collapse-content text-sm">

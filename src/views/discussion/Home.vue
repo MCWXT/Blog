@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
 import { cache, toast } from '../../modules/index.js';
 import { octokit, config } from '../../modules/server/github.js';
 import { axios } from '../../modules/server/bilibili.js';
@@ -31,7 +32,10 @@ octokit
         content: response.status,
       });
     }
-    discussions.value = response.data.reverse();
+    const data = response.data.reverse();
+    const match = data.filter((i) => i.category.slug == 'pin');
+    const rest = data.filter((i) => i.category.slug !== 'pin');
+    discussions.value = [...match, ...rest];
   });
 </script>
 <template>
@@ -39,7 +43,7 @@ octokit
     <router-link
       class="carousel-item w-full relative"
       v-for="item in carousel"
-      :to="{ path: '/link', query: { url: 'https://mcwxt.top/video/' + item.bvid } }">
+      :to="{ path: '/video/' + item.bvid }">
       <img class="object-cover w-full" :src="item.pic" alt="" />
       <div
         class="m-2 p-1 absolute bottom-0 start-0 bg-black/40 text-white text-xs rounded-sm">
@@ -73,19 +77,17 @@ octokit
               <h2 class="text-2xl">{{ discussion.title }}</h2>
             </div>
             <div class="flex items-center">
-              <div class="me-5">
-                <img
-                  class="rounded-full inline me-1 w-10 aspect-square"
-                  :src="discussion.user.avatar_url"
-                  alt="" />
-                <span>{{ discussion.user.login }}</span>
-              </div>
-              <div>
-                <icon
-                  class="me-1 text-base-content/80"
-                  icon="mingcute:comment-fill"></icon>
-                <span>{{ discussion.comments }}</span>
-              </div>
+              <img
+                class="rounded-full inline me-1 w-10 aspect-square"
+                :src="discussion.user.avatar_url"
+                alt="" />
+              <span class="me-3">{{ discussion.user.login }}</span>
+              <icon
+                class="me-1 text-base-content/80 inline"
+                icon="mingcute:comment-fill"></icon>
+              <span class="flex-1">{{ discussion.comments }}</span>
+              <span class="badge badge-sm badge-soft badge-primary">
+                {{ discussion.category.slug }}</span>
             </div>
           </div>
         </router-link>
