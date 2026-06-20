@@ -1,14 +1,14 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useThemeStore = defineStore('theme', {
-  state: () => ({
-    current: localStorage.getItem('theme') || 'light',
-  }),
+export const useThemeStore = defineStore("theme", {
+	state: () => ({
+		current: "light"
+	}),
 
-  actions: {
-    toggleTheme() {
-      const style = document.createElement('style');
-      style.textContent = `
+	actions: {
+		toggleTheme() {
+			const style = document.createElement("style");
+			style.textContent = `
 * {
   transition: color 0.2s linear, 
               background-color 0.2s linear, 
@@ -18,19 +18,19 @@ export const useThemeStore = defineStore('theme', {
   will-change: color, border-color;
 }
 `;
-      document.head.appendChild(style);
-      setTimeout(() => {
-        style.remove();
-      }, 800);
-      this.current = this.current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', this.current);
-      document.documentElement.setAttribute('data-theme', this.current);
-    },
-    isDark() {
-      if (this.current == 'dark') {
-        return true;
-      }
-      return false;
-    },
-  },
+			document.head.appendChild(style);
+			setTimeout(() => {
+				style.remove();
+			}, 800);
+			this.current = this.current === "dark" ? "light" : "dark";
+			document.documentElement.setAttribute("data-theme", this.current);
+		},
+		isDark() {
+			if (this.current == "dark") {
+				return true;
+			}
+			return false;
+		}
+	},
+	persist: true
 });
