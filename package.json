@@ -12,6 +12,7 @@
 		"@iconify/vue": "^5.0.0",
 		"@tailwindcss/vite": "^4.2.1",
 		"axios": "^1.13.5",
+		"dayjs": "^1.11.21",
 		"marked": "^17.0.3",
 		"motion-v": "^1.10.3",
 		"octokit": "^5.0.5",

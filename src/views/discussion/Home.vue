@@ -4,9 +4,24 @@ import { Icon } from '@iconify/vue';
 import { cache, toast } from '../../modules/index.js';
 import { octokit, config } from '../../modules/server/github.js';
 import { axios } from '../../modules/server/bilibili.js';
+import { day } from "../../modules/discussion/day.js";
 
 const discussions = ref();
 const carousel = ref();
+
+function getDiscussTip(item) {
+		const { category } = item;
+		const name = category.name;
+
+		if (name === "Announcements") {
+			return `${item.user.login} ${day(item.created_at).displayText} announced in ${name}`;
+		}
+		if (category.is_answerable) {
+			return `${item.user.login} ${day(item.created_at).displayText} asked in ${name}`;
+		}
+		return `${item.user.login} ${day(item.created_at).displayText} started in ${name}`;
+}
+
 axios
   .get('/video/news')
   .then((response) => {
@@ -73,21 +88,25 @@ octokit
           v-for="discussion in discussions"
           :to="'/discussions/' + discussion.number">
           <div class="p-2">
-            <div class="mb-2">
+            <div class="">
               <h2 class="text-2xl">{{ discussion.title }}</h2>
             </div>
+            <div class="mb-2">
+              <span class="text-sm text-base-content/80">{{ getDiscussTip(discussion) }}</span>
+            </div>
             <div class="flex items-center">
-              <img
+              <div class="me-18">
+                <img
                 class="rounded-full inline me-1 w-10 aspect-square"
                 :src="discussion.user.avatar_url"
                 alt="" />
-              <span class="me-3">{{ discussion.user.login }}</span>
+              </div>
               <icon
                 class="me-1 text-base-content/80 inline"
                 icon="mingcute:comment-fill"></icon>
               <span class="flex-1">{{ discussion.comments }}</span>
-              <span class="badge badge-sm badge-soft badge-primary">
-                {{ discussion.category.slug }}</span>
+              <span v-if="discussion.labels[0]" class="badge badge-sm badge-soft badge-primary">
+                {{ discussion.labels[0].name }}</span>
             </div>
           </div>
         </router-link>
