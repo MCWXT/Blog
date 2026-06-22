@@ -46,8 +46,15 @@
 	const copy = async text => {
 		try {
 			await navigator.clipboard.writeText(text);
+			toast({
+				type: "success",
+				content: "复制成功"
+			});
 		} catch (err) {
-			console.error("复制失败", err);
+			toast({
+				type: "error",
+				content: "复制失败"
+			});
 		}
 	};
 </script>
