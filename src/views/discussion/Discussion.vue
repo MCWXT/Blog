@@ -33,9 +33,6 @@
 		.request(`GET /repos/{owner}/{repo}/discussions/${number}`, config)
 		.then(response => {
 			const contents = response.data;
-			contents.body = marked.parse(
-				contents.body.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, "")
-			);
 			discussion.value = contents;
 		})
 		.catch(error => {
@@ -45,6 +42,14 @@
 			});
 			router.replace("/discussions");
 		});
+
+	const copy = async text => {
+		try {
+			await navigator.clipboard.writeText(text);
+		} catch (err) {
+			console.error("复制失败", err);
+		}
+	};
 </script>
 <template>
 	<template v-if="discussion">
@@ -54,7 +59,7 @@
 			</h1>
 			<div class="mb-3">
 				<div
-          class="badge badge-sm badge-outline"
+					class="badge badge-sm badge-outline"
 					:class="`border-[#${item.color}] text-[#${item.color}]`"
 					v-for="item in discussion.labels"
 				>
@@ -74,23 +79,40 @@
 					<span class="none me-2">{{ discussion.user.login }}</span>
 					<span class="flex-1">{{ day(discussion.created_at).displayText }}</span>
 					<span class="flex-none">
-						<details class="dropdown dropdown-bottom dropdown-end">
-							<summary class="btn btn-ghost">
+						<div class="dropdown dropdown-bottom dropdown-end">
+							<div tabindex="0" role="button" class="btn btn-ghost">
 								<icon icon="bi:three-dots-vertical"></icon>
-							</summary>
+							</div>
 							<ul
+								tabindex="-1"
 								class="menu menu-sm dropdown-content overflow-y-auto max-h-96 rounded-box z-1 mt-2 w-32 p-1 bg-base-200 border border-base-300"
 							>
-								<li><a @click="navigator.clipboard.writeText(location)">复制链接</a></li>
-								<li><a @click="navigator.clipboard.writeText(discussion.body)"">复制Markdown</a></li>
+								<li>
+									<a
+										@click="
+											copy(
+												'https://mcwxt.top/discussions/' + discussion.number
+											)
+										"
+										>复制链接</a
+									>
+								</li>
+								<li><a @click="copy(discussion.body)">复制Markdown</a></li>
 							</ul>
-						</details>
+						</div>
 					</span>
 				</div>
 				<div class="p-2">
 					<article
 						class="mx-2 prose lg:prose-xl break-words"
-						v-html="discussion.body"
+						v-html="
+							marked.parse(
+								discussion.body.replace(
+									/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/,
+									''
+								)
+							)
+						"
 					></article>
 				</div>
 			</div>
