@@ -1,7 +1,4 @@
 <script setup>
-  useHead({
-		title: "首页"
-	});
 	const bvid = useRoute().params.bvid;
 	const data = ref();
 	const { data: _data, error } = await useAPI("/video/view?bvid=" + bvid);
@@ -11,6 +8,9 @@
 			type: "error",
 			content: error.value
 		});
+  useHead({
+		title: "视频：" + data.value.title
+	});
 </script>
 <template>
 	<div>
