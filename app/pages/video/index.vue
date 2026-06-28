@@ -1,5 +1,8 @@
 <script setup>
-  useHead({
+	definePageMeta({
+		keepalive: true
+	});
+	useHead({
 		title: "视频"
 	});
 	const data = ref();

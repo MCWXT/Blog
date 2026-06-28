@@ -1,4 +1,7 @@
 <script setup>
+	definePageMeta({
+		keepalive: true
+	});
 	useHead({
 		title: "首页"
 	});

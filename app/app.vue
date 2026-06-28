@@ -78,7 +78,9 @@
 				</div>
 			</header>
 			<main>
-				<NuxtPage />
+				<NuxtLayout>
+					<NuxtPage />
+				</NuxtLayout>
 			</main>
 			<div class="border-t border-base-300 mx-8 mt-8"></div>
 			<footer class="footer bg-base-100 text-base-content p-10">

@@ -1,5 +1,8 @@
 <script setup>
-  useHead({
+	definePageMeta({
+		keepalive: true
+	});
+	useHead({
 		title: "讨论"
 	});
 	function getDiscussTip(item) {

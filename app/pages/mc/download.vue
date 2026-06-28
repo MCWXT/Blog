@@ -1,5 +1,8 @@
 <script setup>
-  useHead({
+	definePageMeta({
+		keepalive: true
+	});
+	useHead({
 		title: "MC基岩版全版本下载"
 	});
 	const page = ref(1);
@@ -17,10 +20,10 @@
 	watch(data, updateList);
 	watch(page, (value, oldValue) => {
 		if (value < 1 || typeof +value !== "number") {
-      page.value = oldValue || 1;
+			page.value = oldValue || 1;
 			return;
 		}
-    updateList(data.value);
+		updateList(data.value);
 		if (list.value[0] == undefined) {
 			toast({
 				type: "error",
