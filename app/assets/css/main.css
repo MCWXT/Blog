@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@import 'tailwindcss';
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: 'easterEgg';
+  default: false;
+  prefersdark: false;
+  color-scheme: 'light';
+  --color-base-100: oklch(0% 0 0);
+  --color-base-200: oklch(0% 0 0);
+  --color-base-300: oklch(0% 0 0);
+  --color-base-content: oklch(57% 0.245 27.325);
+  --color-primary: oklch(35% 0 0);
+  --color-primary-content: oklch(57% 0.245 27.325);
+  --color-secondary: oklch(44% 0.011 73.639);
+  --color-secondary-content: oklch(50% 0.213 27.518);
+  --color-accent: oklch(35% 0 0);
+  --color-accent-content: oklch(44% 0.177 26.899);
+  --color-neutral: oklch(35% 0 0);
+  --color-neutral-content: oklch(39% 0.141 25.723);
+  --color-info: oklch(39% 0.141 25.723);
+  --color-info-content: oklch(89.04% 0.062 264.052);
+  --color-success: oklch(44% 0.177 26.899);
+  --color-success-content: oklch(90.395% 0.035 142.495);
+  --color-warning: oklch(50% 0.213 27.518);
+  --color-warning-content: oklch(19.359% 0.042 109.769);
+  --color-error: oklch(57% 0.245 27.325);
+  --color-error-content: oklch(12.559% 0.051 29.233);
+  --radius-selector: 0rem;
+  --radius-field: 0rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+@plugin "@tailwindcss/typography";
+
+img {
+  max-width: 100%;
+}
+
+.truncate-wrap {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line);
+  -webkit-box-orient: vertical;
+}
+
+.themeIsDark {
+  background: #00000000;
+  color: #ffffff;
+}
