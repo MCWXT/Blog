@@ -41,11 +41,11 @@
 	<div>
 		<div>
 			<div
-				class="bg-[url(/img/background.jpg)] bg-cover bg-no-repeat bg-center aspect-20/7"
+				class="bg-[url(/img/background.jpg)] bg-cover bg-no-repeat bg-center aspect-20/7 transition bgTranslateY"
 			></div>
-			<div class="flex">
+			<div class="flex z-1 relative border-t border-base-300 bg-linear-to-b from-white/50 to-white backdrop-blur-lg">
 				<div>
-					<div class="ms-2 relative hover-3d" style="height: 8rem; top: -0.5rem">
+					<div class="ms-3 relative hover-3d" style="height: 8rem; top: -0.5rem">
 						<figure class="avatar">
 							<img
 								class="rounded-full"
@@ -63,7 +63,7 @@
 						<div></div>
 						<div></div>
 					</div>
-					<div class="text-center ms-2" style="width: 8rem">
+					<div class="text-center ms-3" style="width: 8rem">
 						<h2 class="text-4xl">MCWXT</h2>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 								<span class="stat-title text-xs mx-auto">关注</span>
 							</div>
 							<div class="stat px-3 py-2">
-								<span class="stat-value text-xl">3.6万</span>
+								<span class="stat-value text-xl">3.6W</span>
 								<span class="stat-title text-xs mx-auto">获赞</span>
 							</div>
 						</div>
@@ -108,10 +108,10 @@
 		<div>
 			<ul class="border-y border-base-300 py-1">
 				<li class="inline mx-3">
-					<nuxt-link class="link" to="/video">视频</nuxt-link>
+					<nuxt-link class="transition active:scale-95 inline-block" to="/video">视频</nuxt-link>
 				</li>
 				<li class="inline mx-3">
-					<nuxt-link class="link" to="/discussions">讨论</nuxt-link>
+					<nuxt-link class="transition active:scale-95 inline-block" to="/discussions">讨论</nuxt-link>
 				</li>
 			</ul>
 		</div>
@@ -134,3 +134,14 @@
 		</div>
 	</div>
 </template>
+<style scoped>
+@keyframes parallax {
+  from { transform: translateY(0); }
+  to   { transform: translateY(200px); }
+}
+.bgTranslateY {
+  animation: parallax linear both;
+  animation-timeline: scroll(root block);
+}
+
+</style>

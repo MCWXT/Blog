@@ -20,7 +20,7 @@
 </script>
 <template>
 	<div class="my-20">
-		<div class="card card-border w-72 mx-auto">
+		<div class="card card-border w-72 mx-auto rounded-2xl">
 			<div class="card-body">
 				<div class="flex justify-between">
 					<h2 class="text-xl font-bold">跳转至:</h2>
@@ -29,7 +29,7 @@
 					</div>
 				</div>
 				<div class="py-5">
-					<p class="truncate text-base-content/90">
+					<p class="truncate text-base-content/70">
 						{{ $route.query.url }}
 					</p>
 				</div>

@@ -4,7 +4,7 @@
 
 <template>
 	<nuxt-link
-		class="rounded-md flex w-96 h-16 transition active:scale-95"
+		class="rounded-md flex w-96 h-16 transition active:scale-96"
 		:to="{ path: '/link', query: { url: href } }"
 	>
 		<div class="m-2">

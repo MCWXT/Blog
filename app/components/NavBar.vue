@@ -18,7 +18,7 @@
 	<div
 		class="navbar transition duration-500 border-b border-base-300 backdrop-blur-sm"
 		:class="{
-			'bg-[var(--color-base-100)]/[95%]': isScrolled,
+			'bg-[var(--color-base-100)]/90': isScrolled,
 			'bg-base-100': !isScrolled
 		}"
 	>
